@@ -1,2 +1,15 @@
+# This is the correct comment syntax for TOML files
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
 [functions]
-included_files = ["node_modules/sharp/**/*"]
+  node_bundler = "esbuild"
+  external_node_modules = ["sharp"]
+  included_files = ["node_modules/sharp/**/*"]
+  timeout = 30
+
+[build.environment]
+  NEXT_USE_NETLIFY_EDGE = "true"
+  NODE_VERSION = "22"
