@@ -54,6 +54,19 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "sharp"
-    ]
+    ],
+    "supportedArchitectures": {
+      "os": [
+        "win32",
+        "linux"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "libc": [
+        "musl",
+        "glibc"
+      ]
+    }
   }
 }
