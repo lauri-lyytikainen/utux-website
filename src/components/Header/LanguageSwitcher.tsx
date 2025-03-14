@@ -22,10 +22,14 @@ export function LanguageSwitcher() {
       <select
         onChange={(e) => changeLanguage(e.target.value as 'fi' | 'en')}
         defaultValue={currentLocale}
-        className="hover:underline"
+        className="hover:underline hover:cursor-pointer "
       >
-        <option value="en">EN</option>
-        <option value="fi">FI</option>
+        <option value="en" className="bg-background">
+          EN
+        </option>
+        <option value="fi" className="bg-background">
+          FI
+        </option>
       </select>
     </>
   )
