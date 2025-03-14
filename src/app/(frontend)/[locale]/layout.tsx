@@ -2,7 +2,7 @@ import React from 'react'
 import { notFound } from 'next/navigation'
 import { i18nConfig } from '@/i18nConfig'
 import '../../globals.css'
-import { Nav } from '@/components/Nav'
+import { Header } from '@/components/Header/Header'
 
 type Params = Promise<{ locale: 'fi' | 'en' }>
 
@@ -23,7 +23,7 @@ export default async function Layout({
       <body>
         <main>
           <div className="min-h-screen flex flex-col min-w-screen">
-            <Nav />
+            <Header locale={locale} />
             <div className="grow max-w-[1024px] mx-auto w-full mt-16  ">{children}</div>
             <footer className="min-h-16 ">Footer</footer>
           </div>
