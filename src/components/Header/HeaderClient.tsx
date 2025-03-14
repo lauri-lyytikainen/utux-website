@@ -14,7 +14,7 @@ export function HeaderClient({ headerData }: { headerData: Header }) {
   return (
     <nav className="w-full fixed top-0 bg-white/30 max-h-16">
       <div className="flex flex-row p-4 align-center justify-between max-w-[1024px] mx-auto">
-        <Image src="media/utux-dark.svg" alt="Utux Logo" width="100" height="40" />
+        <Image src="/media/utux-dark.svg" alt="Utux Logo" width="100" height="40" />
         <ul className="flex flex-row gap-4 align-center font-semibold">
           {links?.map((link) => (
             <li key={link.linkedPage.path} className="flex items-center">
