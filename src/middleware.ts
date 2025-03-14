@@ -8,5 +8,5 @@ export function middleware(request: NextRequest) {
 
 // only applies this middleware to files in the app directory
 export const config = {
-  matcher: ['/((?!api|static|media|admin|.*\\..*|_next).*)', '/:locale/media/:path*'],
+  matcher: ['/((?!api|static|media|admin|.*\\..*|_next).*)', '/((?!:locale/media).*)'],
 }
