@@ -36,7 +36,6 @@ export const Header: GlobalConfig = {
   hooks: {
     afterChange: [
       async () => {
-        console.log('Header changed, revalidating global_header')
         revalidateTag('global_header')
       },
     ],

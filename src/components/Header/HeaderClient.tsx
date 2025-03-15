@@ -32,7 +32,10 @@ export function HeaderClient({ headerData }: { headerData: Header }) {
         <ul className="flex flex-row gap-4 align-center font-semibold">
           {links?.map((link) => (
             <li key={link.linkedPage.path} className="flex items-center">
-              <Link href={`/${link.linkedPage.path}`} className="hover:underline">
+              <Link
+                href={`${link.linkedPage.breadcrumbs?.at(-1)?.url}`}
+                className="hover:underline"
+              >
                 {link.text}
               </Link>
             </li>

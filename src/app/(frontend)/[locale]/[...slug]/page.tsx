@@ -6,8 +6,9 @@ import type { Metadata } from 'next'
 import { generateMeta } from '@/utilities/generateMeta'
 
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 
-type Params = Promise<{ slug: string; locale: 'fi' | 'en' }>
+type Params = Promise<{ slug: string[]; locale: 'fi' | 'en' }>
 
 export const revalidate = 60
 export const dynamicParams = true
@@ -21,12 +22,15 @@ export async function generateStaticParams() {
     overrideAccess: false,
     pagination: false,
     select: {
-      path: true,
+      breadcrumbs: true,
     },
   })
 
-  const params = pages.docs.map(({ path }) => {
-    return { path }
+  const params = pages.docs.map(({ breadcrumbs }) => {
+    if (!breadcrumbs || !breadcrumbs.at(-1)?.url) {
+      return { slug: [] }
+    }
+    return { slug: (breadcrumbs.at(-1)?.url ?? '').split('/').slice(1) }
   })
 
   return params
@@ -43,10 +47,28 @@ export default async function Page({ params }: { params: Params }) {
     return notFound()
   }
 
-  return <p>Custom page: {page.title}</p>
+  return (
+    <>
+      <div className="flex gap-2">
+        {page.breadcrumbs?.map((breadcrumb) => {
+          return (
+            <Link
+              key={breadcrumb.id}
+              href={breadcrumb.url ?? '/'}
+              className="hover:underline text-blue-500"
+            >
+              {' '}
+              &gt; {breadcrumb.label}
+            </Link>
+          )
+        })}
+      </div>
+      <p>Custom page: {page.title}</p>
+    </>
+  )
 }
 
-const queryPageBySlug = cache(async (slug: string, locale: 'fi' | 'en') => {
+const queryPageBySlug = cache(async (slugArray: string[], locale: 'fi' | 'en') => {
   const { isEnabled: draft } = await draftMode()
 
   const payload = await getPayload({ config: configPromise })
@@ -59,7 +81,7 @@ const queryPageBySlug = cache(async (slug: string, locale: 'fi' | 'en') => {
     overrideAccess: draft,
     where: {
       path: {
-        equals: slug,
+        equals: slugArray.at(-1),
       },
     },
     locale: locale,

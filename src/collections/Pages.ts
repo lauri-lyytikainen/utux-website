@@ -19,7 +19,7 @@ export const Pages: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', '_status', 'path', 'updatedAt'],
+    defaultColumns: ['title', '_status', 'updatedAt'],
   },
   fields: [
     {
@@ -30,6 +30,20 @@ export const Pages: CollectionConfig = {
       unique: true,
       admin: {
         description: "The URL path of the page, eg: 'about' would result in '/about'",
+      },
+      // @ts-ignore
+      validate: (value: string) => {
+        const allowedChars = /^[a-z0-9-]+$/i
+        if (!value) {
+          return 'Path is required'
+        }
+        if (!allowedChars.test(value)) {
+          return 'Path must only contain alphanumeric characters and dashes'
+        }
+        if (value !== value.toLowerCase()) {
+          return 'Path must be in lowercase'
+        }
+        return true
       },
     },
     {
@@ -44,12 +58,12 @@ export const Pages: CollectionConfig = {
               label: 'Title',
               required: true,
               localized: true,
+              defaultValue: 'New Page',
             },
             {
               type: 'richText',
               name: 'content',
               label: 'Content',
-              required: true,
               localized: true,
             },
           ],

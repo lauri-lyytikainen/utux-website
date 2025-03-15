@@ -231,7 +231,7 @@ export interface Page {
    */
   path: string;
   title: string;
-  content: {
+  content?: {
     root: {
       type: string;
       children: {
@@ -245,7 +245,7 @@ export interface Page {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   meta?: {
     title?: string | null;
     /**
@@ -254,6 +254,15 @@ export interface Page {
     image?: (number | null) | Media;
     description?: string | null;
   };
+  parent?: (number | null) | Page;
+  breadcrumbs?:
+    | {
+        doc?: (number | null) | Page;
+        url?: string | null;
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -536,6 +545,15 @@ export interface PagesSelect<T extends boolean = true> {
         title?: T;
         image?: T;
         description?: T;
+      };
+  parent?: T;
+  breadcrumbs?:
+    | T
+    | {
+        doc?: T;
+        url?: T;
+        label?: T;
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;

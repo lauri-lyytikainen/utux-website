@@ -1,5 +1,6 @@
 // storage-adapter-import-placeholder
 import { postgresAdapter } from '@payloadcms/db-postgres'
+import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { seoPlugin } from '@payloadcms/plugin-seo'
@@ -47,6 +48,11 @@ export default buildConfig({
       uploadsCollection: 'media',
       generateTitle: ({ doc }) => `Utux.fi — ${doc.title}`,
       generateDescription: ({ doc }) => doc.description,
+    }),
+    nestedDocsPlugin({
+      collections: ['pages'],
+      // generateLabel: (_, doc) => doc ,
+      generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.path}`, ''),
     }),
   ],
 })
