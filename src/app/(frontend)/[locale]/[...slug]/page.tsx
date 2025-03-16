@@ -4,7 +4,13 @@ import { draftMode } from 'next/headers'
 import configPromise from '@payload-config'
 import type { Metadata } from 'next'
 import { generateMeta } from '@/utilities/generateMeta'
-
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 
@@ -49,20 +55,18 @@ export default async function Page({ params }: { params: Params }) {
 
   return (
     <>
-      <div className="flex gap-2">
-        {page.breadcrumbs?.map((breadcrumb) => {
-          return (
-            <Link
-              key={breadcrumb.id}
-              href={breadcrumb.url ?? '/'}
-              className="hover:underline text-blue-500"
-            >
-              {' '}
-              &gt; {breadcrumb.label}
-            </Link>
-          )
-        })}
-      </div>
+      <Breadcrumb>
+        <BreadcrumbList>
+          {page.breadcrumbs?.map((breadcrumb, index) => (
+            <React.Fragment key={breadcrumb.id || index}>
+              {index > 0 && <BreadcrumbSeparator>/</BreadcrumbSeparator>}
+              <BreadcrumbItem>
+                <BreadcrumbLink href={breadcrumb.url ?? '/'}>{breadcrumb.label}</BreadcrumbLink>
+              </BreadcrumbItem>
+            </React.Fragment>
+          ))}
+        </BreadcrumbList>
+      </Breadcrumb>
       <p>Custom page: {page.title}</p>
     </>
   )

@@ -4,6 +4,7 @@ import { i18nConfig } from '@/i18nConfig'
 import '../../globals.css'
 import { Header } from '@/components/Header/Header'
 import { ThemeProvider } from 'next-themes'
+import { Footer } from '@/components/Footer/Footer'
 
 type Params = Promise<{ locale: 'fi' | 'en' }>
 
@@ -27,7 +28,7 @@ export default async function Layout({
             <div className="min-h-screen flex flex-col min-w-screen">
               <Header locale={locale} />
               <div className="grow max-w-[1024px] mx-auto w-full mt-16  ">{children}</div>
-              <footer className="min-h-16 ">Footer</footer>
+              <Footer locale={locale} />
             </div>
           </ThemeProvider>
         </main>
