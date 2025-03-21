@@ -3,6 +3,11 @@ import { i18nConfig } from './i18nConfig'
 import { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
+  const url = request.nextUrl.clone()
+  if (url.pathname === '/' || url.pathname === '/en' || url.pathname === '/fi') {
+    url.pathname = `${url.pathname === '/' ? '' : url.pathname}/home`
+    return Response.redirect(url)
+  }
   return i18nRouter(request, i18nConfig)
 }
 
