@@ -108,8 +108,10 @@ export function HeaderClient({ headerData }: { headerData: Header }) {
                 ))}
               </ul>
               <DrawerFooter>
-                <LanguageSwitcher />
-                <ThemeSwitcher />
+                <div className="flex justify-between">
+                  <LanguageSwitcher />
+                  <ThemeSwitcher />
+                </div>
               </DrawerFooter>
             </div>
           </DrawerContent>

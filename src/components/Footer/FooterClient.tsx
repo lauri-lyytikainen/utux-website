@@ -27,7 +27,7 @@ export function FooterClient({ footerData }: { footerData: Footer }) {
             <p className="text-xs font-light">Utux slogan</p>
           </div>
           {footerData.linkGroups?.map((group) => (
-            <div key={group.id}>
+            <div key={group.id} className="flex flex-col">
               <h3 className="text-md font-bold">{group.title}</h3>
               {group.links?.map((link) => (
                 <Link

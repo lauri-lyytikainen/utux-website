@@ -1,36 +1,74 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '../ui/select'
+import { useEffect, useState } from 'react'
+import { Button } from '../ui/button'
+import { ChevronDownIcon } from 'lucide-react'
+import { Label } from '../ui/label'
 
 export function LanguageSwitcher() {
   const router = useRouter()
   const currentPath = usePathname()
-  const currentLocale = currentPath.includes('/en') ? 'en' : 'fi'
+  const currentLocale = currentPath?.includes('/en') ? 'en' : 'fi'
+  // Add a state to track if the component has mounted
+  const [hasMounted, setHasMounted] = useState(false)
+
+  // Set hasMounted to true after the component mounts
+  useEffect(() => {
+    setHasMounted(true)
+  }, [])
 
   function changeLanguage(targetLocale: 'fi' | 'en') {
-    if (currentPath.includes('/en') && targetLocale === 'fi') {
+    if (currentPath?.includes('/en') && targetLocale === 'fi') {
       router.push(currentPath.replace('/en', `/${targetLocale}`))
       router.refresh()
-    } else if (targetLocale === 'en') {
+    } else if (targetLocale === 'en' && !currentPath?.includes('/en')) {
       const newUrl = '/en' + currentPath
       router.push(newUrl)
       router.refresh()
     }
   }
+
+  // Display a placeholder during server-side rendering
+  if (!hasMounted) {
+    return (
+      <div className="flex gap-2 items-center">
+        <Label>Language</Label>
+        <Button variant="outline" className="font-semibold">
+          {currentLocale === 'en' ? 'English' : 'Finnish'}
+          <ChevronDownIcon className="size-4 opacity-50" />
+        </Button>
+      </div>
+    )
+  }
+
   return (
-    <>
-      <select
-        onChange={(e) => changeLanguage(e.target.value as 'fi' | 'en')}
+    <div className="flex gap-2 items-center">
+      <Label>Language</Label>
+      <Select
+        onValueChange={(value) => changeLanguage(value as 'fi' | 'en')}
+        value={currentLocale}
         defaultValue={currentLocale}
-        className="hover:underline hover:cursor-pointer "
       >
-        <option value="en" className="bg-background">
-          EN
-        </option>
-        <option value="fi" className="bg-background">
-          FI
-        </option>
-      </select>
-    </>
+        <SelectTrigger>
+          <SelectValue placeholder={currentLocale === 'en' ? 'English' : 'Finnish'} />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectItem value="en">English</SelectItem>
+            <SelectItem value="fi">Finnish</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </div>
   )
 }
