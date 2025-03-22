@@ -8,6 +8,7 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+import { CallToAction } from '@/blocks/CallToAction/config'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -59,6 +60,12 @@ export const Pages: CollectionConfig = {
               required: true,
               localized: true,
               defaultValue: 'New Page',
+            },
+            {
+              type: 'blocks',
+              name: 'blocks',
+              label: 'Blocks',
+              blocks: [CallToAction],
             },
             {
               type: 'richText',

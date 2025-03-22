@@ -14,7 +14,7 @@ const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
   if (image && typeof image === 'object' && 'url' in image) {
     const ogUrl = image.sizes?.og?.url
 
-    url = ogUrl ? serverUrl + ogUrl : serverUrl + image.url
+    url = (ogUrl as string) || (image.url as string)
   }
 
   return url
@@ -41,7 +41,9 @@ export const generateMeta = async (args: { doc: Partial<Page> | null }): Promise
           ]
         : undefined,
       title,
-      url: Array.isArray(doc?.path) ? doc?.path.join('/') : '/',
+      url: doc?.breadcrumbs
+        ? (process.env.NEXT_PUBLIC_SERVER_URL || '') + doc?.breadcrumbs?.at(-1)?.url
+        : process.env.NEXT_PUBLIC_SERVER_URL || '/',
     }),
     title,
   }

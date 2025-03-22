@@ -5,6 +5,15 @@ import '../../globals.css'
 import { Header } from '@/components/Header/Header'
 import { ThemeProvider } from 'next-themes'
 import { Footer } from '@/components/Footer/Footer'
+import { Inter } from 'next/font/google'
+
+const inter = Inter({
+  subsets: ['latin'],
+  // Including all weights you need
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  // Enable variable font
+  variable: '--font-inter',
+})
 
 type Params = Promise<{ locale: 'fi' | 'en' }>
 
@@ -21,7 +30,7 @@ export default async function Layout({
   }
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning className={inter.variable}>
       <body>
         <main>
           <ThemeProvider attribute="class" enableSystem={true} defaultTheme="system">

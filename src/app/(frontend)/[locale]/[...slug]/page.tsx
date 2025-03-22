@@ -4,15 +4,10 @@ import { draftMode } from 'next/headers'
 import configPromise from '@payload-config'
 import type { Metadata } from 'next'
 import { generateMeta } from '@/utilities/generateMeta'
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb'
+import { RichText } from '@payloadcms/richtext-lexical/react'
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
+import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs'
+import { RenderBlocks } from '@/blocks/RenderBlocks'
 
 type Params = Promise<{ slug: string[]; locale: 'fi' | 'en' }>
 
@@ -52,22 +47,20 @@ export default async function Page({ params }: { params: Params }) {
   if (!page) {
     return notFound()
   }
-
   return (
     <>
-      <Breadcrumb>
-        <BreadcrumbList>
-          {page.breadcrumbs?.map((breadcrumb, index) => (
-            <React.Fragment key={breadcrumb.id || index}>
-              {index > 0 && <BreadcrumbSeparator>/</BreadcrumbSeparator>}
-              <BreadcrumbItem>
-                <BreadcrumbLink href={breadcrumb.url ?? '/'}>{breadcrumb.label}</BreadcrumbLink>
-              </BreadcrumbItem>
-            </React.Fragment>
-          ))}
-        </BreadcrumbList>
-      </Breadcrumb>
-      <p>Custom page: {page.title}</p>
+      <Breadcrumbs
+        crumbs={
+          page.breadcrumbs?.map((b) => ({
+            doc: '',
+            label: b.label ?? '',
+            url: b.url ?? '',
+          })) ?? []
+        }
+      />
+      <h1>{page.title}</h1>
+
+      <RenderBlocks blocks={page.blocks} />
     </>
   )
 }
