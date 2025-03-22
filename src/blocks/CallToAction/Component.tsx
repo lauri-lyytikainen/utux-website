@@ -4,14 +4,14 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export const CallToActionBlock = ({
+export function CallToActionBlock({
   description,
   link,
   image,
   title,
   linkText,
   invertLayout,
-}: CallToAction) => {
+}: CallToAction) {
   const img = (image as Media).sizes?.og
   return (
     <div className={`w-full flex flex-col ${invertLayout ? 'sm:flex-row-reverse' : 'sm:flex-row'}`}>

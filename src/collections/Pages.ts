@@ -9,6 +9,7 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { CallToAction } from '@/blocks/CallToAction/config'
+import { Text } from '@/blocks/Text/config'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -65,7 +66,7 @@ export const Pages: CollectionConfig = {
               type: 'blocks',
               name: 'blocks',
               label: 'Blocks',
-              blocks: [CallToAction],
+              blocks: [CallToAction, Text],
             },
             {
               type: 'richText',

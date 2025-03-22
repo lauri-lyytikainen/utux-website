@@ -17,6 +17,7 @@ import { Header } from './globals/Header'
 import { Footer } from './globals/Footer'
 import { CallToActionBlock } from './blocks/CallToAction/Component'
 import { CallToAction } from './blocks/CallToAction/config'
+import { Text } from './blocks/Text/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -35,7 +36,7 @@ export default buildConfig({
   },
   collections: [Users, Media, Pages],
   globals: [Header, Footer],
-  blocks: [CallToAction],
+  blocks: [CallToAction, Text],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

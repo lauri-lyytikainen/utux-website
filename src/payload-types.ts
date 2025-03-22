@@ -67,6 +67,7 @@ export interface Config {
   };
   blocks: {
     callToAction: CallToAction;
+    text: Text;
   };
   collections: {
     users: User;
@@ -172,31 +173,53 @@ export interface Page {
   path: string;
   title: string;
   blocks?:
-    | {
-        title: string;
-        description?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
+    | (
+        | {
+            title: string;
+            description?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
               [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        link?: (number | null) | Page;
-        linkText: string;
-        image?: (number | null) | Media;
-        invertLayout?: boolean | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'callToAction';
-      }[]
+            } | null;
+            link?: (number | null) | Page;
+            linkText: string;
+            image?: (number | null) | Media;
+            invertLayout?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToAction';
+          }
+        | {
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'text';
+          }
+      )[]
     | null;
   content?: {
     root: {
@@ -310,6 +333,30 @@ export interface Media {
       filename?: string | null;
     };
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "text".
+ */
+export interface Text {
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'text';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -611,6 +658,13 @@ export interface PagesSelect<T extends boolean = true> {
               linkText?: T;
               image?: T;
               invertLayout?: T;
+              id?: T;
+              blockName?: T;
+            };
+        text?:
+          | T
+          | {
+              content?: T;
               id?: T;
               blockName?: T;
             };

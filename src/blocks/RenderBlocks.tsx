@@ -2,9 +2,11 @@ import { Page } from '@/payload-types'
 import { Block } from 'payload'
 import { CallToActionBlock } from './CallToAction/Component'
 import React from 'react'
+import { TextBlock } from './Text/Component'
 
 const blockComponents: Record<Block['slug'], React.ComponentType<any>> = {
   callToAction: CallToActionBlock,
+  text: TextBlock,
 }
 
 export function RenderBlocks(props: { blocks: Page['blocks'] }) {
