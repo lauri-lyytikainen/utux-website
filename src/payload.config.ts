@@ -24,6 +24,8 @@ const dirname = path.dirname(filename)
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL,
+  csrf: [process.env.NEXT_PUBLIC_SERVER_URL ?? ''],
+  cors: [process.env.NEXT_PUBLIC_SERVER_URL ?? ''],
   admin: {
     user: Users.slug,
     importMap: {
