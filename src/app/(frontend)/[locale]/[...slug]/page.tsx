@@ -58,7 +58,6 @@ export default async function Page({ params }: { params: Params }) {
           })) ?? []
         }
       />
-      <h1>{page.title}</h1>
 
       <RenderBlocks blocks={page.blocks} />
     </>

@@ -219,6 +219,36 @@ export interface Page {
             blockName?: string | null;
             blockType: 'text';
           }
+        | {
+            title: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'simpleHero';
+          }
+        | {
+            title: string;
+            description?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            image: number | Media;
+            buttonText: string;
+            buttonLink?: (number | null) | Page;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'superHero';
+          }
       )[]
     | null;
   content?: {
@@ -665,6 +695,24 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               content?: T;
+              id?: T;
+              blockName?: T;
+            };
+        simpleHero?:
+          | T
+          | {
+              title?: T;
+              id?: T;
+              blockName?: T;
+            };
+        superHero?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              image?: T;
+              buttonText?: T;
+              buttonLink?: T;
               id?: T;
               blockName?: T;
             };

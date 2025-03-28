@@ -26,7 +26,7 @@ export function HeaderClient({ headerData }: { headerData: Header }) {
   const firstLinkRef = useRef<HTMLAnchorElement>(null)
 
   return (
-    <nav className="w-full fixed top-0 bg-white/30 max-h-16">
+    <nav className="w-full fixed top-0 bg-card/80 max-h-16 backdrop-blur-md z-10">
       <div className="flex flex-row p-4 align-center justify-between max-w-[1024px] mx-auto">
         <Image
           src="/media/utux-dark.svg"

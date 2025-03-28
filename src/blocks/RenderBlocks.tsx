@@ -3,10 +3,13 @@ import { Block } from 'payload'
 import { CallToActionBlock } from './CallToAction/Component'
 import React from 'react'
 import { TextBlock } from './Text/Component'
+import { SimpleHeroComponent, SuperHeroComponent } from './HeroSection/Component'
 
 const blockComponents: Record<Block['slug'], React.ComponentType<any>> = {
   callToAction: CallToActionBlock,
   text: TextBlock,
+  simpleHero: SimpleHeroComponent,
+  superHero: SuperHeroComponent,
 }
 
 export function RenderBlocks(props: { blocks: Page['blocks'] }) {
