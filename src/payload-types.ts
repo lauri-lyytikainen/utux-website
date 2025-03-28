@@ -155,8 +155,13 @@ export interface CallToAction {
     };
     [k: string]: unknown;
   } | null;
-  link?: (number | null) | Page;
-  linkText: string;
+  buttonText: string;
+  useInternalLink?: boolean | null;
+  buttonLink?: (number | null) | Page;
+  /**
+   * External url address must include the protocol eg. https:// or http://
+   */
+  buttonLinkExternal?: string | null;
   image?: (number | null) | Media;
   invertLayout?: boolean | null;
   id?: string | null;
@@ -193,8 +198,13 @@ export interface Page {
               };
               [k: string]: unknown;
             } | null;
-            link?: (number | null) | Page;
-            linkText: string;
+            buttonText: string;
+            useInternalLink?: boolean | null;
+            buttonLink?: (number | null) | Page;
+            /**
+             * External url address must include the protocol eg. https:// or http://
+             */
+            buttonLinkExternal?: string | null;
             image?: (number | null) | Media;
             invertLayout?: boolean | null;
             id?: string | null;
@@ -246,28 +256,18 @@ export interface Page {
             } | null;
             image: number | Media;
             buttonText: string;
+            useInternalLink?: boolean | null;
             buttonLink?: (number | null) | Page;
+            /**
+             * External url address must include the protocol eg. https:// or http://
+             */
+            buttonLinkExternal?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'superHero';
           }
       )[]
     | null;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
   meta?: {
     title?: string | null;
     /**
@@ -423,7 +423,12 @@ export interface SuperHero {
   } | null;
   image: number | Media;
   buttonText: string;
+  useInternalLink?: boolean | null;
   buttonLink?: (number | null) | Page;
+  /**
+   * External url address must include the protocol eg. https:// or http://
+   */
+  buttonLinkExternal?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'superHero';
@@ -724,8 +729,10 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               title?: T;
               description?: T;
-              link?: T;
-              linkText?: T;
+              buttonText?: T;
+              useInternalLink?: T;
+              buttonLink?: T;
+              buttonLinkExternal?: T;
               image?: T;
               invertLayout?: T;
               id?: T;
@@ -752,12 +759,13 @@ export interface PagesSelect<T extends boolean = true> {
               description?: T;
               image?: T;
               buttonText?: T;
+              useInternalLink?: T;
               buttonLink?: T;
+              buttonLinkExternal?: T;
               id?: T;
               blockName?: T;
             };
       };
-  content?: T;
   meta?:
     | T
     | {

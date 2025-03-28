@@ -69,12 +69,6 @@ export const Pages: CollectionConfig = {
               label: 'Blocks',
               blocks: [CallToAction, Text, SimpleHero, SuperHero],
             },
-            {
-              type: 'richText',
-              name: 'content',
-              label: 'Content',
-              localized: true,
-            },
           ],
         },
         {

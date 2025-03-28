@@ -30,6 +30,7 @@ export const Text: Block = {
           ]
         },
       }),
+      localized: true,
     },
   ],
 }

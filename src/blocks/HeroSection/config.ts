@@ -18,6 +18,7 @@ export const SimpleHero: Block = {
       type: 'text',
       required: true,
       localized: true,
+      defaultValue: 'Hero title',
     },
   ],
 }
@@ -29,6 +30,7 @@ export const SuperHero: Block = {
       type: 'text',
       required: true,
       localized: true,
+      defaultValue: 'Hero title',
     },
     {
       name: 'description',
@@ -58,14 +60,39 @@ export const SuperHero: Block = {
     {
       name: 'buttonText',
       type: 'text',
+      label: 'Button Text',
       required: true,
       defaultValue: 'Get Started',
       localized: true,
     },
     {
+      name: 'useInternalLink',
+      type: 'checkbox',
+      defaultValue: true,
+    },
+    {
       name: 'buttonLink',
       type: 'relationship',
       relationTo: 'pages',
+      label: 'Link to page',
+      admin: {
+        condition: (_, siblingData) => siblingData.useInternalLink,
+      },
+    },
+    {
+      name: 'buttonLinkExternal',
+      type: 'text',
+      label: 'Link to an external page',
+      admin: {
+        condition: (_, siblingData) => !siblingData.useInternalLink,
+        description: 'External url address must include the protocol eg. https:// or http:// ',
+      },
+      validate: (value: any) => {
+        if (!value.startsWith('https://')) {
+          return 'External url address must include the protocol eg. https:// or http:// '
+        }
+        return true
+      },
     },
   ],
 }

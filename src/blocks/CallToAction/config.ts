@@ -18,6 +18,7 @@ export const CallToAction: Block = {
       label: 'Title',
       defaultValue: 'Call to Action',
       required: true,
+      localized: true,
     },
     {
       name: 'description',
@@ -37,17 +38,41 @@ export const CallToAction: Block = {
       }),
     },
     {
-      name: 'link',
-      type: 'relationship',
-      relationTo: 'pages',
-      label: 'Link',
+      name: 'buttonText',
+      type: 'text',
+      label: 'Button Text',
+      required: true,
+      defaultValue: 'Learn More',
+      localized: true,
     },
     {
-      name: 'linkText',
+      name: 'useInternalLink',
+      type: 'checkbox',
+      defaultValue: true,
+    },
+    {
+      name: 'buttonLink',
+      type: 'relationship',
+      relationTo: 'pages',
+      label: 'Link to page',
+      admin: {
+        condition: (_, siblingData) => siblingData.useInternalLink,
+      },
+    },
+    {
+      name: 'buttonLinkExternal',
       type: 'text',
-      label: 'Link Text',
-      defaultValue: 'Learn More',
-      required: true,
+      label: 'Link to an external page',
+      admin: {
+        condition: (_, siblingData) => !siblingData.useInternalLink,
+        description: 'External url address must include the protocol eg. https:// or http:// ',
+      },
+      validate: (value: any) => {
+        if (!value.startsWith('https://')) {
+          return 'External url address must include the protocol eg. https:// or http:// '
+        }
+        return true
+      },
     },
     {
       name: 'image',

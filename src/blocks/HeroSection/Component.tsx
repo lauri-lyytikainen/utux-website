@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button'
 import { Media, SimpleHero, SuperHero, Page } from '@/payload-types'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export function SimpleHeroComponent({ title }: SimpleHero) {
   return (
@@ -16,8 +17,13 @@ export function SuperHeroComponent({
   buttonText,
   buttonLink,
   description,
+  useInternalLink,
+  buttonLinkExternal,
 }: SuperHero) {
   const img = (image as Media).sizes?.large
+  const link = useInternalLink
+    ? (((buttonLink as Page)?.breadcrumbs?.at(-1)?.url as string) ?? '/')
+    : (buttonLinkExternal ?? '/')
   return (
     <div className="relative h-[500px]  overflow-x-hidden">
       <Image
@@ -28,12 +34,13 @@ export function SuperHeroComponent({
         className="w-full h-full object-cover"
       />
       <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-background to-background/20"></div>
-      {/* <div className="absolute top-0 bg-background/50 h-full inset-x-0"></div> */}
       <div className="absolute inset-0 flex items-end justify-center">
         <div className="max-w-[1024px] w-full h-1/2 p-4 flex flex-col justify-between">
           <h1>{title}</h1>
           {description && <RichText data={description} />}
-          <Button>{buttonText}</Button>
+          <Button asChild>
+            <Link href={link}>{buttonText}</Link>
+          </Button>
         </div>
       </div>
     </div>
