@@ -9,13 +9,13 @@ import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
+import { migrations } from './migrations'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Header } from './globals/Header'
 import { Footer } from './globals/Footer'
-import { CallToActionBlock } from './blocks/CallToAction/Component'
 import { CallToAction } from './blocks/CallToAction/config'
 import { Text } from './blocks/Text/config'
 
@@ -48,6 +48,7 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
     },
+    prodMigrations: migrations,
   }),
   sharp,
   plugins: [
@@ -59,7 +60,6 @@ export default buildConfig({
     }),
     nestedDocsPlugin({
       collections: ['pages'],
-      // generateLabel: (_, doc) => doc ,
       generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.path}`, ''),
     }),
     s3Storage({
