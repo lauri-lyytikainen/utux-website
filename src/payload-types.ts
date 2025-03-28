@@ -68,6 +68,8 @@ export interface Config {
   blocks: {
     callToAction: CallToAction;
     text: Text;
+    simpleHero: SimpleHero;
+    superHero: SuperHero;
   };
   collections: {
     users: User;
@@ -387,6 +389,44 @@ export interface Text {
   id?: string | null;
   blockName?: string | null;
   blockType: 'text';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "simpleHero".
+ */
+export interface SimpleHero {
+  title: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'simpleHero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "superHero".
+ */
+export interface SuperHero {
+  title: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  image: number | Media;
+  buttonText: string;
+  buttonLink?: (number | null) | Page;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'superHero';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

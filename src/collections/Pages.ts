@@ -34,7 +34,7 @@ export const Pages: CollectionConfig = {
       admin: {
         description: "The URL path of the page, eg: 'about' would result in '/about'",
       },
-      // @ts-ignore
+      // @ts-expect-error
       validate: (value: string) => {
         const allowedChars = /^[a-z0-9-]+$/i
         if (!value) {

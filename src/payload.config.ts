@@ -18,6 +18,7 @@ import { Header } from './globals/Header'
 import { Footer } from './globals/Footer'
 import { CallToAction } from './blocks/CallToAction/config'
 import { Text } from './blocks/Text/config'
+import { SimpleHero, SuperHero } from './blocks/HeroSection/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -38,7 +39,7 @@ export default buildConfig({
   },
   collections: [Users, Media, Pages],
   globals: [Header, Footer],
-  blocks: [CallToAction, Text],
+  blocks: [CallToAction, Text, SimpleHero, SuperHero],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
