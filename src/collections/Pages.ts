@@ -10,6 +10,7 @@ import {
 } from '@payloadcms/plugin-seo/fields'
 import { CallToAction } from '@/blocks/CallToAction/config'
 import { Text } from '@/blocks/Text/config'
+import { SimpleHero, SuperHero } from '@/blocks/HeroSection/config'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -66,7 +67,7 @@ export const Pages: CollectionConfig = {
               type: 'blocks',
               name: 'blocks',
               label: 'Blocks',
-              blocks: [CallToAction, Text],
+              blocks: [CallToAction, Text, SimpleHero, SuperHero],
             },
             {
               type: 'richText',

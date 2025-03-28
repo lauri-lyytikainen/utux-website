@@ -34,9 +34,9 @@ export default async function Layout({
       <body>
         <main>
           <ThemeProvider attribute="class" enableSystem={true} defaultTheme="system">
-            <div className="min-h-screen flex flex-col min-w-screen">
+            <div className="min-h-screen flex flex-col w-full">
               <Header locale={locale} />
-              <div className="grow max-w-[1024px] mx-auto w-full mt-16  ">{children}</div>
+              <div className="grow w-full mt-16">{children}</div>
               <Footer locale={locale} />
             </div>
           </ThemeProvider>

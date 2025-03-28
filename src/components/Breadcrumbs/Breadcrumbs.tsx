@@ -10,7 +10,7 @@ import { Breadcrumb as crumb } from '@payloadcms/plugin-nested-docs/types'
 
 export function Breadcrumbs({ crumbs }: { crumbs: crumb[] }) {
   return (
-    <Breadcrumb>
+    <Breadcrumb className="max-w-[1024px] mx-auto p-4">
       <BreadcrumbList>
         {crumbs.map((breadcrumb, index) => (
           <React.Fragment key={index}>
