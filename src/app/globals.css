@@ -89,12 +89,16 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@theme {
+  --font-display: 'Inter', 'sans-serif';
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-display;
   }
   h2,
   h3,
