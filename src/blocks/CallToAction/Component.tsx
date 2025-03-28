@@ -14,7 +14,9 @@ export function CallToActionBlock({
 }: CallToAction) {
   const img = (image as Media).sizes?.og
   return (
-    <div className={`w-full flex flex-col ${invertLayout ? 'sm:flex-row-reverse' : 'sm:flex-row'}`}>
+    <div
+      className={`max-w-[1024px] mx-auto p-4 flex flex-col ${invertLayout ? 'sm:flex-row-reverse' : 'sm:flex-row'}`}
+    >
       <div className="flex flex-col min-w-1/2  justify-between  p-2">
         <div className="flex flex-col h-full justify-between">
           <h2>{title}</h2>
