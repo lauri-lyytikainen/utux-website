@@ -36,6 +36,7 @@ export const CallToAction: Block = {
           ]
         },
       }),
+      localized: true,
     },
     {
       name: 'buttonText',

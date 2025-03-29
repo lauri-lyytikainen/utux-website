@@ -21,33 +21,36 @@ export const Media: CollectionConfig = {
       {
         name: 'thumbnail',
         width: 300,
+        withoutEnlargement: true,
       },
       {
         name: 'square',
         width: 500,
         height: 500,
+        withoutEnlargement: true,
       },
       {
         name: 'small',
         width: 600,
-      },
-      {
-        name: 'medium',
-        width: 900,
+        withoutEnlargement: true,
       },
       {
         name: 'large',
         width: 1400,
+        withoutEnlargement: true,
       },
       {
-        name: 'xlarge',
+        name: 'wide',
         width: 1920,
+        height: 500,
+        withoutEnlargement: false,
       },
       {
         name: 'og',
         width: 1200,
         height: 630,
         crop: 'center',
+        withoutEnlargement: true,
       },
     ],
   },

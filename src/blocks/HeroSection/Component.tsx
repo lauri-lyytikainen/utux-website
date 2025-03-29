@@ -20,7 +20,7 @@ export function SuperHeroComponent({
   useInternalLink,
   buttonLinkExternal,
 }: SuperHero) {
-  const img = (image as Media).sizes?.large
+  const img = (image as Media).sizes?.wide
   const link = useInternalLink
     ? (((buttonLink as Page)?.breadcrumbs?.at(-1)?.url as string) ?? '/')
     : (buttonLinkExternal ?? '/')
@@ -38,7 +38,7 @@ export function SuperHeroComponent({
         <div className="max-w-[1024px] w-full h-1/2 p-4 flex flex-col justify-between">
           <h1>{title}</h1>
           {description && <RichText data={description} />}
-          <Button asChild>
+          <Button asChild className="sm:self-start" size={'lg'}>
             <Link href={link}>{buttonText}</Link>
           </Button>
         </div>

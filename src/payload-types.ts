@@ -70,6 +70,8 @@ export interface Config {
     text: Text;
     simpleHero: SimpleHero;
     superHero: SuperHero;
+    pageMedia: PageMedia;
+    linkButton: LinkButton;
   };
   collections: {
     users: User;
@@ -266,6 +268,28 @@ export interface Page {
             blockName?: string | null;
             blockType: 'superHero';
           }
+        | {
+            media?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'pageMedia';
+          }
+        | {
+            buttonText: string;
+            /**
+             * If checked, the button will be full width of the page, otherwise left aligned
+             */
+            fullWidth?: boolean | null;
+            useInternalLink?: boolean | null;
+            buttonLink?: (number | null) | Page;
+            /**
+             * External url address must include the protocol eg. https:// or http://
+             */
+            buttonLinkExternal?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'linkButton';
+          }
       )[]
     | null;
   meta?: {
@@ -332,14 +356,6 @@ export interface Media {
       filesize?: number | null;
       filename?: string | null;
     };
-    medium?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
     large?: {
       url?: string | null;
       width?: number | null;
@@ -348,7 +364,7 @@ export interface Media {
       filesize?: number | null;
       filename?: string | null;
     };
-    xlarge?: {
+    wide?: {
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -432,6 +448,36 @@ export interface SuperHero {
   id?: string | null;
   blockName?: string | null;
   blockType: 'superHero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pageMedia".
+ */
+export interface PageMedia {
+  media?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'pageMedia';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "linkButton".
+ */
+export interface LinkButton {
+  buttonText: string;
+  /**
+   * If checked, the button will be full width of the page, otherwise left aligned
+   */
+  fullWidth?: boolean | null;
+  useInternalLink?: boolean | null;
+  buttonLink?: (number | null) | Page;
+  /**
+   * External url address must include the protocol eg. https:// or http://
+   */
+  buttonLinkExternal?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'linkButton';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -672,16 +718,6 @@ export interface MediaSelect<T extends boolean = true> {
               filesize?: T;
               filename?: T;
             };
-        medium?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
         large?:
           | T
           | {
@@ -692,7 +728,7 @@ export interface MediaSelect<T extends boolean = true> {
               filesize?: T;
               filename?: T;
             };
-        xlarge?:
+        wide?:
           | T
           | {
               url?: T;
@@ -759,6 +795,24 @@ export interface PagesSelect<T extends boolean = true> {
               description?: T;
               image?: T;
               buttonText?: T;
+              useInternalLink?: T;
+              buttonLink?: T;
+              buttonLinkExternal?: T;
+              id?: T;
+              blockName?: T;
+            };
+        pageMedia?:
+          | T
+          | {
+              media?: T;
+              id?: T;
+              blockName?: T;
+            };
+        linkButton?:
+          | T
+          | {
+              buttonText?: T;
+              fullWidth?: T;
               useInternalLink?: T;
               buttonLink?: T;
               buttonLinkExternal?: T;

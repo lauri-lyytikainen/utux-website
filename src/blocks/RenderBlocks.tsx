@@ -4,12 +4,16 @@ import { CallToActionBlock } from './CallToAction/Component'
 import React from 'react'
 import { TextBlock } from './Text/Component'
 import { SimpleHeroComponent, SuperHeroComponent } from './HeroSection/Component'
+import { MediaComponent } from './Media/Component'
+import { LinkButtonComponent } from './LinkButton/Component'
 
 const blockComponents: Record<Block['slug'], React.ComponentType<any>> = {
   callToAction: CallToActionBlock,
   text: TextBlock,
   simpleHero: SimpleHeroComponent,
   superHero: SuperHeroComponent,
+  pageMedia: MediaComponent,
+  linkButton: LinkButtonComponent,
 }
 
 export function RenderBlocks(props: { blocks: Page['blocks'] }) {
