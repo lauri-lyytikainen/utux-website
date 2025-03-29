@@ -13,6 +13,7 @@ import { Text } from '@/blocks/Text/config'
 import { SimpleHero, SuperHero } from '@/blocks/HeroSection/config'
 import { PageMedia } from '@/blocks/Media/config'
 import { LinkButton } from '@/blocks/LinkButton/config'
+import { CookiePreferences } from '@/blocks/CookiePreferences/config'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -69,7 +70,15 @@ export const Pages: CollectionConfig = {
               type: 'blocks',
               name: 'blocks',
               label: 'Blocks',
-              blocks: [CallToAction, Text, SimpleHero, SuperHero, PageMedia, LinkButton],
+              blocks: [
+                CallToAction,
+                Text,
+                SimpleHero,
+                SuperHero,
+                PageMedia,
+                LinkButton,
+                CookiePreferences,
+              ],
             },
           ],
         },

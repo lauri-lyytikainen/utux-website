@@ -2,10 +2,11 @@ import React from 'react'
 import { notFound } from 'next/navigation'
 import { i18nConfig } from '@/i18nConfig'
 import '../../globals.css'
+import 'react-cookie-manager/style.css'
 import { Header } from '@/components/Header/Header'
-import { ThemeProvider } from 'next-themes'
 import { Footer } from '@/components/Footer/Footer'
 import { Inter } from 'next/font/google'
+import { Providers } from '@/components/Providers/Providers'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -33,13 +34,13 @@ export default async function Layout({
     <html lang={locale} suppressHydrationWarning className={inter.variable}>
       <body>
         <main>
-          <ThemeProvider attribute="class" enableSystem={true} defaultTheme="system">
+          <Providers lang={locale}>
             <div className="min-h-screen flex flex-col w-full">
               <Header locale={locale} />
               <div className="grow w-full mt-16">{children}</div>
               <Footer locale={locale} />
             </div>
-          </ThemeProvider>
+          </Providers>
         </main>
       </body>
     </html>

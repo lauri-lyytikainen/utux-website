@@ -72,6 +72,7 @@ export interface Config {
     superHero: SuperHero;
     pageMedia: PageMedia;
     linkButton: LinkButton;
+    cookiePreferences: CookiePreferences;
   };
   collections: {
     users: User;
@@ -290,6 +291,22 @@ export interface Page {
             blockName?: string | null;
             blockType: 'linkButton';
           }
+        | {
+            buttonText: string;
+            consentText: string;
+            declineText: string;
+            essentialTitle: string;
+            essentialDescription: string;
+            analyticsTitle: string;
+            analyticsDescription: string;
+            socialTitle: string;
+            socialDescription: string;
+            advertisingTitle: string;
+            advertisingDescription: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'cookiePreferences';
+          }
       )[]
     | null;
   meta?: {
@@ -478,6 +495,26 @@ export interface LinkButton {
   id?: string | null;
   blockName?: string | null;
   blockType: 'linkButton';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cookiePreferences".
+ */
+export interface CookiePreferences {
+  buttonText: string;
+  consentText: string;
+  declineText: string;
+  essentialTitle: string;
+  essentialDescription: string;
+  analyticsTitle: string;
+  analyticsDescription: string;
+  socialTitle: string;
+  socialDescription: string;
+  advertisingTitle: string;
+  advertisingDescription: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cookiePreferences';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -816,6 +853,23 @@ export interface PagesSelect<T extends boolean = true> {
               useInternalLink?: T;
               buttonLink?: T;
               buttonLinkExternal?: T;
+              id?: T;
+              blockName?: T;
+            };
+        cookiePreferences?:
+          | T
+          | {
+              buttonText?: T;
+              consentText?: T;
+              declineText?: T;
+              essentialTitle?: T;
+              essentialDescription?: T;
+              analyticsTitle?: T;
+              analyticsDescription?: T;
+              socialTitle?: T;
+              socialDescription?: T;
+              advertisingTitle?: T;
+              advertisingDescription?: T;
               id?: T;
               blockName?: T;
             };

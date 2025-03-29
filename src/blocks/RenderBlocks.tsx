@@ -6,6 +6,8 @@ import { TextBlock } from './Text/Component'
 import { SimpleHeroComponent, SuperHeroComponent } from './HeroSection/Component'
 import { MediaComponent } from './Media/Component'
 import { LinkButtonComponent } from './LinkButton/Component'
+import {} from './CookiePreferences/config'
+import { CookiePreferencesComponent } from './CookiePreferences/Component'
 
 const blockComponents: Record<Block['slug'], React.ComponentType<any>> = {
   callToAction: CallToActionBlock,
@@ -14,6 +16,7 @@ const blockComponents: Record<Block['slug'], React.ComponentType<any>> = {
   superHero: SuperHeroComponent,
   pageMedia: MediaComponent,
   linkButton: LinkButtonComponent,
+  cookiePreferences: CookiePreferencesComponent,
 }
 
 export function RenderBlocks(props: { blocks: Page['blocks'] }) {
