@@ -32,6 +32,7 @@ export function SuperHeroComponent({
         width={img?.width as number}
         height={img?.height as number}
         className="w-full h-full object-cover"
+        priority
       />
       <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-background to-background/20"></div>
       <div className="absolute inset-0 flex items-end justify-center">

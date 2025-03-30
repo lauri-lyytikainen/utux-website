@@ -6,14 +6,12 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '../ui/select'
 import { useEffect, useState } from 'react'
 import { Button } from '../ui/button'
-import { ChevronDownIcon } from 'lucide-react'
-import { Label } from '../ui/label'
+import { ChevronDownIcon, Globe } from 'lucide-react'
 
 export function LanguageSwitcher() {
   const router = useRouter()
@@ -42,7 +40,8 @@ export function LanguageSwitcher() {
   if (!hasMounted) {
     return (
       <div className="flex gap-2 items-center">
-        <Label>Language</Label>
+        <Globe className="w-6 h-6" />
+        <p className="text-sm font-light">Language</p>
         <Button variant="outline" className="font-semibold">
           {currentLocale === 'en' ? 'English' : 'Finnish'}
           <ChevronDownIcon className="size-4 opacity-50" />
@@ -53,7 +52,8 @@ export function LanguageSwitcher() {
 
   return (
     <div className="flex gap-2 items-center">
-      <Label>Language</Label>
+      <Globe className="w-6 h-6" />
+      <p className="text-sm font-light">Language</p>
       <Select
         onValueChange={(value) => changeLanguage(value as 'fi' | 'en')}
         value={currentLocale}

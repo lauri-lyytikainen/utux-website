@@ -4,6 +4,7 @@ import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { Switch } from '../ui/switch'
 import { Label } from '../ui/label'
+import { Moon } from 'lucide-react'
 
 export function ThemeSwitcher() {
   const { theme, setTheme } = useTheme()
@@ -24,7 +25,8 @@ export function ThemeSwitcher() {
 
   return (
     <div className="flex gap-2 items-center">
-      <Label htmlFor="dark-mode">Dark Mode</Label>
+      <Moon className="w-6 h-6" />
+      <p className="text-sm font-light">Darkmode</p>
       <Switch
         type="button"
         id="dark-mode"
