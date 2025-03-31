@@ -25,7 +25,7 @@ export function CookiePreferencesClient({ props }: { props: CookieTranslation })
     return (
       <div className="flex items-center sm:items-start gap-2">
         <ShieldCheck className="text-primary" />
-        <div aria-flowto="flex flex-col">
+        <div className="flex flex-col">
           <p className="font-bold">{props.manageConsentModal.manageCookiesStatusConsented}</p>
           <p className="text-muted-foreground">{consentDate}</p>
         </div>
