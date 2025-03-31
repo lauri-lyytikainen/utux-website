@@ -22,6 +22,7 @@ import { SimpleHero, SuperHero } from './blocks/HeroSection/config'
 import { PageMedia } from './blocks/Media/config'
 import { LinkButton } from './blocks/LinkButton/config'
 import { CookiePreferences } from './blocks/CookiePreferences/config'
+import { CookieTranslation } from './globals/Cookies'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -41,7 +42,7 @@ export default buildConfig({
     defaultLocale: 'fi',
   },
   collections: [Users, Media, Pages],
-  globals: [Header, Footer],
+  globals: [Header, Footer, CookieTranslation],
   blocks: [CallToAction, Text, SimpleHero, SuperHero, PageMedia, LinkButton, CookiePreferences],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

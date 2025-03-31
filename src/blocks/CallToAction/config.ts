@@ -92,4 +92,5 @@ export const CallToAction: Block = {
     plural: 'Calls to Action',
     singular: 'Call to Action',
   },
+  imageURL: 'https://iili.io/3AHYVN1.md.png',
 }

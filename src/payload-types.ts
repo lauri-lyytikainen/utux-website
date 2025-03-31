@@ -99,10 +99,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    cookieTranslation: CookieTranslation;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    cookieTranslation: CookieTranslationSelect<false> | CookieTranslationSelect<true>;
   };
   locale: 'en' | 'fi';
   user: User & {
@@ -292,17 +294,7 @@ export interface Page {
             blockType: 'linkButton';
           }
         | {
-            buttonText: string;
-            consentText: string;
-            declineText: string;
-            essentialTitle: string;
-            essentialDescription: string;
-            analyticsTitle: string;
-            analyticsDescription: string;
-            socialTitle: string;
-            socialDescription: string;
-            advertisingTitle: string;
-            advertisingDescription: string;
+            locale: string;
             id?: string | null;
             blockName?: string | null;
             blockType: 'cookiePreferences';
@@ -501,17 +493,7 @@ export interface LinkButton {
  * via the `definition` "cookiePreferences".
  */
 export interface CookiePreferences {
-  buttonText: string;
-  consentText: string;
-  declineText: string;
-  essentialTitle: string;
-  essentialDescription: string;
-  analyticsTitle: string;
-  analyticsDescription: string;
-  socialTitle: string;
-  socialDescription: string;
-  advertisingTitle: string;
-  advertisingDescription: string;
+  locale: string;
   id?: string | null;
   blockName?: string | null;
   blockType: 'cookiePreferences';
@@ -859,17 +841,7 @@ export interface PagesSelect<T extends boolean = true> {
         cookiePreferences?:
           | T
           | {
-              buttonText?: T;
-              consentText?: T;
-              declineText?: T;
-              essentialTitle?: T;
-              essentialDescription?: T;
-              analyticsTitle?: T;
-              analyticsDescription?: T;
-              socialTitle?: T;
-              socialDescription?: T;
-              advertisingTitle?: T;
-              advertisingDescription?: T;
+              locale?: T;
               id?: T;
               blockName?: T;
             };
@@ -997,6 +969,134 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cookieTranslation".
+ */
+export interface CookieTranslation {
+  id: number;
+  /**
+   * The cookie preferences dialog.
+   */
+  popup: {
+    /**
+     * The title of the cookie preferences dialog
+     */
+    title: string;
+    /**
+     * The message displayed in the cookie preferences dialog
+     */
+    message: string;
+    /**
+     * The text displayed on the accept button
+     */
+    buttonText: string;
+    /**
+     * The text displayed on the decline button
+     */
+    declineButtonText: string;
+    /**
+     * The text displayed on the manage cookies button
+     */
+    manageButtonText: string;
+    /**
+     * The text displayed on the privacy policy link
+     */
+    privacyPolicyText: string;
+    /**
+     * The privacy policy page
+     */
+    privacyPolicyLink?: (number | null) | Page;
+  };
+  /**
+   * The cookie consent management dialog
+   */
+  manageConsentModal: {
+    /**
+     * The title of the cookie consent management dialog
+     */
+    manageTitle: string;
+    /**
+     * The message displayed in the cookie consent management dialog
+     */
+    manageMessage: string;
+    /**
+     * The status of the cookie consent management dialog, you can use the following placeholders: {{status}} and {{date}}
+     */
+    manageCookiesStatus: string;
+    /**
+     * The status of the cookie consent management dialog when the user has consented
+     */
+    manageCookiesStatusConsented: string;
+    /**
+     * The status of the cookie consent management dialog when the user has declined
+     */
+    manageCookiesStatusDeclined: string;
+    /**
+     * The text displayed on the cancel button
+     */
+    manageCancelButtonText: string;
+    /**
+     * The text displayed on the save button
+     */
+    manageSaveButtonText: string;
+  };
+  /**
+   * The cookie consent management sections
+   */
+  sections: {
+    essential: {
+      /**
+       * The title of the essential cookie consent management section
+       */
+      manageEssentialTitle: string;
+      /**
+       * The description of the essential cookies
+       */
+      manageEssentialSubtitle: string;
+      /**
+       * The status of the essential cookies
+       */
+      manageEssentialStatus: string;
+      /**
+       * The text displayed on the always on button
+       */
+      manageEssentialStatusButtonText: string;
+    };
+    analytics: {
+      /**
+       * The title of the analytics cookie consent management section
+       */
+      manageAnalyticsTitle: string;
+      /**
+       * The description of the analytics cookies
+       */
+      manageAnalyticsSubtitle: string;
+    };
+    social: {
+      /**
+       * The title of the social cookie consent management section
+       */
+      manageSocialTitle: string;
+      /**
+       * The description of the social cookies
+       */
+      manageSocialSubtitle: string;
+    };
+    advertising: {
+      /**
+       * The title of the advertising cookie consent management section
+       */
+      manageAdvertTitle: string;
+      /**
+       * The description of the advertising cookies
+       */
+      manageAdvertSubtitle: string;
+    };
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -1028,6 +1128,67 @@ export interface FooterSelect<T extends boolean = true> {
               id?: T;
             };
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cookieTranslation_select".
+ */
+export interface CookieTranslationSelect<T extends boolean = true> {
+  popup?:
+    | T
+    | {
+        title?: T;
+        message?: T;
+        buttonText?: T;
+        declineButtonText?: T;
+        manageButtonText?: T;
+        privacyPolicyText?: T;
+        privacyPolicyLink?: T;
+      };
+  manageConsentModal?:
+    | T
+    | {
+        manageTitle?: T;
+        manageMessage?: T;
+        manageCookiesStatus?: T;
+        manageCookiesStatusConsented?: T;
+        manageCookiesStatusDeclined?: T;
+        manageCancelButtonText?: T;
+        manageSaveButtonText?: T;
+      };
+  sections?:
+    | T
+    | {
+        essential?:
+          | T
+          | {
+              manageEssentialTitle?: T;
+              manageEssentialSubtitle?: T;
+              manageEssentialStatus?: T;
+              manageEssentialStatusButtonText?: T;
+            };
+        analytics?:
+          | T
+          | {
+              manageAnalyticsTitle?: T;
+              manageAnalyticsSubtitle?: T;
+            };
+        social?:
+          | T
+          | {
+              manageSocialTitle?: T;
+              manageSocialSubtitle?: T;
+            };
+        advertising?:
+          | T
+          | {
+              manageAdvertTitle?: T;
+              manageAdvertSubtitle?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;

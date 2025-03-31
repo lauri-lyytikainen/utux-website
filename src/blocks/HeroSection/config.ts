@@ -21,6 +21,7 @@ export const SimpleHero: Block = {
       defaultValue: 'Hero title',
     },
   ],
+  imageURL: 'https://iili.io/3AHYaPj.md.png',
 }
 export const SuperHero: Block = {
   slug: 'superHero',
@@ -95,4 +96,5 @@ export const SuperHero: Block = {
       },
     },
   ],
+  imageURL: 'https://iili.io/3AHYlKx.md.png',
 }

@@ -33,4 +33,5 @@ export const Text: Block = {
       localized: true,
     },
   ],
+  imageURL: 'https://iili.io/3AHYMAP.md.png',
 }

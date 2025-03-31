@@ -50,4 +50,5 @@ export const LinkButton: Block = {
       },
     },
   ],
+  imageURL: 'https://iili.io/3AHY0cQ.md.png',
 }

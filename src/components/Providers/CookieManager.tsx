@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import { CookieService } from './CookieService'
+import { CookieTranslation, Page } from '@/payload-types'
 
 const CookieManager = dynamic(
   () => import('react-cookie-manager').then((mod) => mod.CookieManager),
@@ -13,10 +14,10 @@ const CookieManager = dynamic(
 // Create a wrapper component for CookieManager
 export function CookieManagerWrapper({
   children,
-  lang,
+  props,
 }: {
   children: React.ReactNode
-  lang: 'fi' | 'en'
+  props: CookieTranslation
 }) {
   const [mounted, setMounted] = useState(false)
   const { theme } = useTheme() // Use resolvedTheme instead of theme
@@ -25,20 +26,18 @@ export function CookieManagerWrapper({
     setMounted(true)
   }, [])
 
-  const enText = {
-    title: 'Cookie Preferences',
-    message: 'We use cookies to improve your experience.',
-  }
-
-  const fiText = {
-    title: 'Evästeet',
-    message: 'We use cookies to improve your experience.',
-  }
-
   return (
     <CookieManager
       showManageButton={true}
-      translations={lang === 'en' ? enText : fiText}
+      translations={{
+        ...props.popup,
+        ...props.manageConsentModal,
+        ...props.sections.essential,
+        ...props.sections.analytics,
+        ...props.sections.social,
+        ...props.sections.advertising,
+      }}
+      privacyPolicyUrl={(props.popup.privacyPolicyLink as Page)?.breadcrumbs?.at(-1)?.url ?? '/'}
       displayType="banner"
       theme={mounted ? (theme as 'light' | 'dark') : 'light'}
     >

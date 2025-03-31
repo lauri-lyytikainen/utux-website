@@ -10,4 +10,5 @@ export const PageMedia: Block = {
       label: 'Media',
     },
   ],
+  imageURL: 'https://iili.io/3AHY1SV.md.png',
 }
