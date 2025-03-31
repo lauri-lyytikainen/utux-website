@@ -64,8 +64,18 @@ export function LanguageSwitcher() {
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectItem value="en">English</SelectItem>
-            <SelectItem value="fi">Finnish</SelectItem>
+            <SelectItem value="en">
+              <div className="w-6 h-4">
+                <img src="/media/gb.svg" className="w-full h-full rounded-xs object-cover" />
+              </div>
+              English
+            </SelectItem>
+            <SelectItem value="fi">
+              <div className="w-6 h-4">
+                <img src="/media/fi.svg" className="w-full h-full rounded-xs object-cover" />
+              </div>
+              Finnish
+            </SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>
