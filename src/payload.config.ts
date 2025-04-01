@@ -23,6 +23,7 @@ import { PageMedia } from './blocks/Media/config'
 import { LinkButton } from './blocks/LinkButton/config'
 import { CookiePreferences } from './blocks/CookiePreferences/config'
 import { CookieTranslation } from './globals/Cookies'
+import { ContactForm } from './blocks/ContactForm/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -43,7 +44,16 @@ export default buildConfig({
   },
   collections: [Users, Media, Pages],
   globals: [Header, Footer, CookieTranslation],
-  blocks: [CallToAction, Text, SimpleHero, SuperHero, PageMedia, LinkButton, CookiePreferences],
+  blocks: [
+    CallToAction,
+    Text,
+    SimpleHero,
+    SuperHero,
+    PageMedia,
+    LinkButton,
+    CookiePreferences,
+    ContactForm,
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -60,7 +70,7 @@ export default buildConfig({
     payloadCloudPlugin(),
     seoPlugin({
       uploadsCollection: 'media',
-      generateTitle: ({ doc }) => `Utux.fi — ${doc.title}`,
+      generateTitle: ({ doc }) => `${doc.title}`,
       generateDescription: ({ doc }) => doc.description,
     }),
     nestedDocsPlugin({

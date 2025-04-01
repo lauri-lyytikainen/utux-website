@@ -9,7 +9,7 @@ const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
   const serverUrl = getServerSideURL()
 
   // TODO: Replace this with a default image
-  let url = serverUrl + '/website-template-OG.webp'
+  let url = serverUrl + '/media/utux-og.webp'
 
   if (image && typeof image === 'object' && 'url' in image) {
     const ogUrl = image.sizes?.og?.url
@@ -25,9 +25,7 @@ export const generateMeta = async (args: { doc: Partial<Page> | null }): Promise
 
   const ogImage = getImageURL(doc?.meta?.image)
 
-  const title = doc?.meta?.title
-    ? doc?.meta?.title + ' | Utux Website Template'
-    : 'Utux Website Template'
+  const title = doc?.meta?.title ? doc?.meta?.title + ' | UTUX.fi' : 'UTUX.fi'
 
   return {
     description: doc?.meta?.description,

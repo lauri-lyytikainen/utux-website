@@ -34,7 +34,7 @@ export function CallToActionBlock({
       <div className="overflow-hidden h-full relative justify-center flex flex-col rounded-[var(--radius)]">
         <Image
           className="object-cover aspect-video"
-          src={img?.url as string}
+          src={(img?.url as string) ?? '/'}
           width={img?.width as number}
           height={img?.height as number}
           alt={(image as Media).alt}

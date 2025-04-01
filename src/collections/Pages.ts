@@ -14,6 +14,7 @@ import { SimpleHero, SuperHero } from '@/blocks/HeroSection/config'
 import { PageMedia } from '@/blocks/Media/config'
 import { LinkButton } from '@/blocks/LinkButton/config'
 import { CookiePreferences } from '@/blocks/CookiePreferences/config'
+import { ContactForm } from '@/blocks/ContactForm/config'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -78,6 +79,7 @@ export const Pages: CollectionConfig = {
                 PageMedia,
                 LinkButton,
                 CookiePreferences,
+                ContactForm,
               ],
             },
           ],

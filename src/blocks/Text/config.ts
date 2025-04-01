@@ -7,6 +7,7 @@ import {
   HorizontalRuleFeature,
   ItalicFeature,
   lexicalEditor,
+  LinkFeature,
   UnderlineFeature,
 } from '@payloadcms/richtext-lexical'
 
@@ -27,6 +28,7 @@ export const Text: Block = {
             AlignFeature(),
             HorizontalRuleFeature(),
             FixedToolbarFeature(),
+            LinkFeature(),
           ]
         },
       }),

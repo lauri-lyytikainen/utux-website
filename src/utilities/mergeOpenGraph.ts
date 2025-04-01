@@ -3,14 +3,14 @@ import { getServerSideURL } from './getURL'
 
 const defaultOpenGraph: Metadata['openGraph'] = {
   type: 'website',
-  description: 'Utux website template',
+  description: 'UTUX.fi - UX solutions for you and your business',
   images: [
     {
-      url: `${getServerSideURL()}/website-template-OG.webp`,
+      url: `${getServerSideURL()}/media/utux-og.webp`,
     },
   ],
-  siteName: 'Utux Website Template',
-  title: 'Utux Website Template',
+  siteName: 'UTUX.fi',
+  title: 'UTUX.fi - UX solutions for you and your business',
 }
 
 export const mergeOpenGraph = (og?: Metadata['openGraph']): Metadata['openGraph'] => {

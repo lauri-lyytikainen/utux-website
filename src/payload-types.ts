@@ -73,6 +73,7 @@ export interface Config {
     pageMedia: PageMedia;
     linkButton: LinkButton;
     cookiePreferences: CookiePreferences;
+    contactForm: ContactForm;
   };
   collections: {
     users: User;
@@ -299,6 +300,28 @@ export interface Page {
             blockName?: string | null;
             blockType: 'cookiePreferences';
           }
+        | {
+            title: string;
+            nameField: {
+              label: string;
+              ErrorShort: string;
+              ErrorLong: string;
+            };
+            emailField: {
+              label: string;
+              ErrorInvalid: string;
+              ErrorLong: string;
+            };
+            messageField: {
+              label: string;
+              ErrorShort: string;
+              ErrorLong: string;
+            };
+            submitButtonText: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactForm';
+          }
       )[]
     | null;
   meta?: {
@@ -497,6 +520,32 @@ export interface CookiePreferences {
   id?: string | null;
   blockName?: string | null;
   blockType: 'cookiePreferences';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contactForm".
+ */
+export interface ContactForm {
+  title: string;
+  nameField: {
+    label: string;
+    ErrorShort: string;
+    ErrorLong: string;
+  };
+  emailField: {
+    label: string;
+    ErrorInvalid: string;
+    ErrorLong: string;
+  };
+  messageField: {
+    label: string;
+    ErrorShort: string;
+    ErrorLong: string;
+  };
+  submitButtonText: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactForm';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -842,6 +891,35 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               locale?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contactForm?:
+          | T
+          | {
+              title?: T;
+              nameField?:
+                | T
+                | {
+                    label?: T;
+                    ErrorShort?: T;
+                    ErrorLong?: T;
+                  };
+              emailField?:
+                | T
+                | {
+                    label?: T;
+                    ErrorInvalid?: T;
+                    ErrorLong?: T;
+                  };
+              messageField?:
+                | T
+                | {
+                    label?: T;
+                    ErrorShort?: T;
+                    ErrorLong?: T;
+                  };
+              submitButtonText?: T;
               id?: T;
               blockName?: T;
             };

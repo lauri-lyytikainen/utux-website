@@ -7,6 +7,7 @@ import { SimpleHeroComponent, SuperHeroComponent } from './HeroSection/Component
 import { MediaComponent } from './Media/Component'
 import { LinkButtonComponent } from './LinkButton/Component'
 import { CookiePreferencesComponent } from './CookiePreferences/Component'
+import { ContactFormComponent } from './ContactForm/Component'
 
 const blockComponents: Record<Block['slug'], React.ComponentType<any>> = {
   callToAction: CallToActionBlock,
@@ -16,6 +17,7 @@ const blockComponents: Record<Block['slug'], React.ComponentType<any>> = {
   pageMedia: MediaComponent,
   linkButton: LinkButtonComponent,
   cookiePreferences: CookiePreferencesComponent,
+  contactForm: ContactFormComponent,
 }
 
 export function RenderBlocks(props: { blocks: Page['blocks'] }) {
