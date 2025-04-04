@@ -170,6 +170,32 @@ export const ContactForm: Block = {
         }
       },
     },
+    {
+      name: 'successMessage',
+      type: 'text',
+      required: true,
+      localized: true,
+      defaultValue: ({ locale }) => {
+        if (locale === 'fi') {
+          return 'Vastaamme viestiisi mahdollisimman pian!'
+        } else {
+          return 'We will get back to you as soon as possible'
+        }
+      },
+    },
+    {
+      name: 'successTitle',
+      type: 'text',
+      required: true,
+      localized: true,
+      defaultValue: ({ locale }) => {
+        if (locale === 'fi') {
+          return 'Kiitos viestistäsi!'
+        } else {
+          return 'Thank you for your message!'
+        }
+      },
+    },
   ],
   //   imageURL: 'https://iili.io/3AHYVN1.md.png',
 }

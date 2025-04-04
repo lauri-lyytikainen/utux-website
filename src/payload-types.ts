@@ -318,6 +318,8 @@ export interface Page {
               ErrorLong: string;
             };
             submitButtonText: string;
+            successMessage: string;
+            successTitle: string;
             id?: string | null;
             blockName?: string | null;
             blockType: 'contactForm';
@@ -543,6 +545,8 @@ export interface ContactForm {
     ErrorLong: string;
   };
   submitButtonText: string;
+  successMessage: string;
+  successTitle: string;
   id?: string | null;
   blockName?: string | null;
   blockType: 'contactForm';
@@ -920,6 +924,8 @@ export interface PagesSelect<T extends boolean = true> {
                     ErrorLong?: T;
                   };
               submitButtonText?: T;
+              successMessage?: T;
+              successTitle?: T;
               id?: T;
               blockName?: T;
             };

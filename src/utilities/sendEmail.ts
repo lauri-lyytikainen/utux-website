@@ -1,5 +1,5 @@
 'use server'
-const nodemailer = require('nodemailer')
+import nodemailer from 'nodemailer'
 
 interface FormData {
   name: string
@@ -64,7 +64,7 @@ export async function sendEmail(data: FormData): Promise<EmailResponse> {
       from: process.env.GMAIL_USERNAME,
       to: process.env.GMAIL_USERNAME,
       subject: `Utux.fi - ${name} sent you a message`,
-      text: message,
+      text: `${name} sent you a message:\n\n${message}\n\n${email}`,
       replyTo: email,
     })
     return { error: null, data: 'Email sent successfully!' }

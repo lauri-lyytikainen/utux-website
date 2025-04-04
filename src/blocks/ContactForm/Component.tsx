@@ -16,8 +16,9 @@ import {
 } from '@/components/ui/form'
 import React, { useState } from 'react'
 import { ContactForm } from '@/payload-types'
-import { Loader2, SendHorizonal } from 'lucide-react'
+import { Car, Loader2, Mail, SendHorizonal } from 'lucide-react'
 import { sendEmail } from '@/utilities/sendEmail'
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
 
 export function ContactFormComponent({
   title,
@@ -25,8 +26,11 @@ export function ContactFormComponent({
   nameField,
   emailField,
   messageField,
+  successMessage,
+  successTitle,
 }: ContactForm) {
   const [loading, setLoading] = useState(false)
+  const [submitted, setSubmitted] = useState(true)
 
   const formSchema = z.object({
     email: z.string().email(emailField.ErrorInvalid).max(254, emailField.ErrorLong),
@@ -49,14 +53,21 @@ export function ContactFormComponent({
       name: values.name,
       email: values.email,
       message: values.message,
+    }).then(({ data }) => {
+      if (data) {
+        setSubmitted(true)
+      }
     })
     setLoading(false)
   }
   return (
-    <div className="max-w-[1024px] mx-auto p-4">
+    <div className="max-w-[1024px] mx-auto p-4 relative">
       <h2 className="my-4">{title}</h2>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className={`${submitted ? 'hidden' : 'block'} space-y-8`}
+        >
           <FormField
             control={form.control}
             name="name"
@@ -65,7 +76,7 @@ export function ContactFormComponent({
                 <FormItem>
                   <FormLabel>{nameField.label}</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder={nameField.label} />
+                    <Input {...field} placeholder={nameField.label} disabled={loading} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -80,7 +91,7 @@ export function ContactFormComponent({
                 <FormItem>
                   <FormLabel>{emailField.label}</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder={emailField.label} />
+                    <Input {...field} placeholder={emailField.label} disabled={loading} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -95,7 +106,7 @@ export function ContactFormComponent({
                 <FormItem>
                   <FormLabel>{messageField.label}</FormLabel>
                   <FormControl>
-                    <Textarea {...field} placeholder={messageField.label} />
+                    <Textarea {...field} placeholder={messageField.label} disabled={loading} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -107,6 +118,19 @@ export function ContactFormComponent({
           </Button>
         </form>
       </Form>
+      <div className={`${submitted ? 'block' : 'hidden'} w-full`}>
+        <Card>
+          <CardHeader>
+            <div className="flex flex-col justify-center items-center gap-4">
+              <Mail />
+              <h3>{successTitle}</h3>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <p className="text-center">{successMessage}</p>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   )
 }
