@@ -11,10 +11,10 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 export function AccordionComponent({ accordions }: AccordionType) {
   return (
     <div className="max-w-[1024px] mx-auto p-4">
-      <Accordion type="single" collapsible className="w-full">
+      <Accordion className="w-full">
         {accordions?.map((accordion, index) => {
           return (
-            <AccordionItem value={accordion.title + '-' + index} key={index}>
+            <AccordionItem key={index}>
               <AccordionTrigger>
                 <h2>{accordion.title}</h2>
               </AccordionTrigger>
