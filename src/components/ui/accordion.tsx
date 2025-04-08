@@ -135,7 +135,7 @@ function AccordionTrigger({ children, onClick, className }: AccordionTriggerProp
   return (
     <summary
       className={cn(
-        `flex w-full cursor-pointer items-center justify-between py-4 text-foreground`,
+        `flex w-full cursor-pointer items-center justify-between py-4 text-foreground hover:underline`,
         className,
       )}
       onClick={onClick}
