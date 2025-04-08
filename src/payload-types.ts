@@ -74,6 +74,7 @@ export interface Config {
     linkButton: LinkButton;
     cookiePreferences: CookiePreferences;
     contactForm: ContactForm;
+    accordion: Accordion;
   };
   collections: {
     users: User;
@@ -326,6 +327,32 @@ export interface Page {
             blockName?: string | null;
             blockType: 'contactForm';
           }
+        | {
+            accordions?:
+              | {
+                  title: string;
+                  content?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: string;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'accordion';
+          }
       )[]
     | null;
   meta?: {
@@ -552,6 +579,36 @@ export interface ContactForm {
   id?: string | null;
   blockName?: string | null;
   blockType: 'contactForm';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "accordion".
+ */
+export interface Accordion {
+  accordions?:
+    | {
+        title: string;
+        content?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'accordion';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -929,6 +986,19 @@ export interface PagesSelect<T extends boolean = true> {
               submitButtonText?: T;
               successMessage?: T;
               successTitle?: T;
+              id?: T;
+              blockName?: T;
+            };
+        accordion?:
+          | T
+          | {
+              accordions?:
+                | T
+                | {
+                    title?: T;
+                    content?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

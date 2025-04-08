@@ -7,6 +7,7 @@ import { Header } from '@/components/Header/Header'
 import { Footer } from '@/components/Footer/Footer'
 import { Inter } from 'next/font/google'
 import { Providers } from '@/components/Providers/Providers'
+import { BackToTopButton } from '@/components/BackToTopButton/BackToTopButton'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -38,6 +39,7 @@ export default async function Layout({
             <div className="min-h-screen flex flex-col w-full">
               <Header locale={locale} />
               <div className="grow w-full mt-16">{children}</div>
+              <BackToTopButton />
               <Footer locale={locale} />
             </div>
           </Providers>

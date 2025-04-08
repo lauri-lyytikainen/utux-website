@@ -24,6 +24,7 @@ import { LinkButton } from './blocks/LinkButton/config'
 import { CookiePreferences } from './blocks/CookiePreferences/config'
 import { CookieTranslation } from './globals/Cookies'
 import { ContactForm } from './blocks/ContactForm/config'
+import { Accordion } from './blocks/Accordion/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -53,6 +54,7 @@ export default buildConfig({
     LinkButton,
     CookiePreferences,
     ContactForm,
+    Accordion,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

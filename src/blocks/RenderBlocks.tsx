@@ -8,6 +8,7 @@ import { MediaComponent } from './Media/Component'
 import { LinkButtonComponent } from './LinkButton/Component'
 import { CookiePreferencesComponent } from './CookiePreferences/Component'
 import { ContactFormComponent } from './ContactForm/Component'
+import { AccordionComponent } from './Accordion/Component'
 
 const blockComponents: Record<Block['slug'], React.ComponentType<any>> = {
   callToAction: CallToActionBlock,
@@ -18,6 +19,7 @@ const blockComponents: Record<Block['slug'], React.ComponentType<any>> = {
   linkButton: LinkButtonComponent,
   cookiePreferences: CookiePreferencesComponent,
   contactForm: ContactFormComponent,
+  accordion: AccordionComponent,
 }
 
 export function RenderBlocks(props: { blocks: Page['blocks'] }) {

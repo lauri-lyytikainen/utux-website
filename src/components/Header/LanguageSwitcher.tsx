@@ -13,6 +13,39 @@ import { useEffect, useState } from 'react'
 import { Button } from '../ui/button'
 import { ChevronDownIcon, Globe } from 'lucide-react'
 
+const FiFlag = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 18 11"
+    className="min-w-6 min-h-4 object-cover rounded-xs"
+  >
+    <path fill="#fff" d="M0 0h18v11H0z" />
+    <path stroke="#002F6C" strokeWidth={3} d="M0 5.5h18M6.5 0v11" />
+  </svg>
+)
+
+const EnFlag = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    className="min-w-6 min-h-4 object-cover rounded-xs"
+  >
+    <clipPath id="a">
+      <path d="M0 0v30h60V0z" />
+    </clipPath>
+    <clipPath id="b">
+      <path d="M30 15h30v15zv15H0zH0V0zV0h30z" />
+    </clipPath>
+    <g clipPath="url(#a)">
+      <path fill="#012169" d="M0 0v30h60V0z" />
+      <path stroke="#fff" strokeWidth={6} d="m0 0 60 30m0-30L0 30" />
+      <path stroke="#C8102E" strokeWidth={4} d="m0 0 60 30m0-30L0 30" clipPath="url(#b)" />
+      <path stroke="#fff" strokeWidth={10} d="M30 0v30M0 15h60" />
+      <path stroke="#C8102E" strokeWidth={6} d="M30 0v30M0 15h60" />
+    </g>
+  </svg>
+)
+
 export function LanguageSwitcher() {
   const router = useRouter()
   const currentPath = usePathname()
@@ -66,13 +99,13 @@ export function LanguageSwitcher() {
           <SelectGroup>
             <SelectItem value="en">
               <div className="w-6 h-4">
-                <img src="/media/gb.svg" className="w-full h-full rounded-xs object-cover" />
+                <EnFlag />
               </div>
               English
             </SelectItem>
             <SelectItem value="fi">
               <div className="w-6 h-4">
-                <img src="/media/fi.svg" className="w-full h-full rounded-xs object-cover" />
+                <FiFlag />
               </div>
               Finnish
             </SelectItem>

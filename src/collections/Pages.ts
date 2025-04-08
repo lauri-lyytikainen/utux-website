@@ -15,6 +15,7 @@ import { PageMedia } from '@/blocks/Media/config'
 import { LinkButton } from '@/blocks/LinkButton/config'
 import { CookiePreferences } from '@/blocks/CookiePreferences/config'
 import { ContactForm } from '@/blocks/ContactForm/config'
+import { Accordion } from '@/blocks/Accordion/config'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -80,6 +81,7 @@ export const Pages: CollectionConfig = {
                 LinkButton,
                 CookiePreferences,
                 ContactForm,
+                Accordion,
               ],
             },
           ],
