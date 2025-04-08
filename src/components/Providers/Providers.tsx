@@ -13,7 +13,7 @@ export async function Providers({
 }) {
   const cookieText = await getCachedGlobal('cookieTranslation', lang, 2)()
   return (
-    <ThemeProvider attribute="class" enableSystem={true} defaultTheme="system">
+    <ThemeProvider attribute="class" enableSystem={false} defaultTheme="light">
       <CookieManagerWrapper props={cookieText as CookieTranslation}>
         {children}
       </CookieManagerWrapper>
