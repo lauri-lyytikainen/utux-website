@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { Header } from '@/payload-types'
 import { Page } from '@/payload-types'
 import { ThemeSwitcher } from './ThemeSwitcher'
-import { Menu } from 'lucide-react'
+import { Menu, XIcon } from 'lucide-react'
 import { useRef } from 'react'
 import {
   Drawer,
@@ -24,6 +24,7 @@ import {
   SheetTrigger,
   SheetClose,
 } from '@/components/ui/sheet'
+import { Close } from '@radix-ui/react-dialog'
 import { Button } from '../ui/button'
 export function HeaderClient({ headerData }: { headerData: Header }) {
   const links = headerData.links?.map((link) => ({
@@ -72,7 +73,15 @@ export function HeaderClient({ headerData }: { headerData: Header }) {
           </SheetTrigger>
           <SheetContent side="top">
             <SheetHeader className="max-w-[1024px] mx-auto w-full">
-              <SheetTitle>Menu</SheetTitle>
+              <SheetTitle>
+                <div className="max-w-[1024px] mx-auto flex justify-between items-center">
+                  Menu
+                  <Close className="ring-offset-background focus:ring-ring data-[state=open]:bg-secondary w-4 h-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none">
+                    <XIcon className="size-4" />
+                    <span className="sr-only">Close</span>
+                  </Close>
+                </div>
+              </SheetTitle>
               <div className="flex justify-between mt-4 py-4">
                 <ul className="flex-col gap-4 align-center font-semibold flex" role="menu">
                   {links?.map((link) => (
