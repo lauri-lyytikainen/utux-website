@@ -40,7 +40,7 @@ export const Accordion: Block = {
               FixedToolbarFeature(),
               AlignFeature(),
               HeadingFeature({
-                enabledHeadingSizes: ['h2', 'h3', 'h4'],
+                enabledHeadingSizes: ['h3', 'h4'],
               }),
             ],
           }),

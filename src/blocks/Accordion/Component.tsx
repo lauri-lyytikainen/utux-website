@@ -15,7 +15,9 @@ export function AccordionComponent({ accordions }: AccordionType) {
         {accordions?.map((accordion, index) => {
           return (
             <AccordionItem value={accordion.title + '-' + index} key={index}>
-              <AccordionTrigger>{accordion.title}</AccordionTrigger>
+              <AccordionTrigger>
+                <h2>{accordion.title}</h2>
+              </AccordionTrigger>
               <AccordionContent>
                 {accordion.content && (
                   <RichText data={accordion.content} converters={jsxConverters} />

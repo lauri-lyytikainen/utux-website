@@ -17,7 +17,7 @@ const FiFlag = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 18 11"
-    className="min-w-6 min-h-4 object-cover rounded-xs"
+    className="min-w-6 min-h-4 object-cover"
   >
     <path fill="#fff" d="M0 0h18v11H0z" />
     <path stroke="#002F6C" strokeWidth={3} d="M0 5.5h18M6.5 0v11" />
@@ -28,7 +28,7 @@ const EnFlag = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 60 30"
-    className="min-w-6 min-h-4 object-cover rounded-xs"
+    className="min-w-6 min-h-4 object-cover"
   >
     <clipPath id="a">
       <path d="M0 0v30h60V0z" />
