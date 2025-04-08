@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { CallToAction, Media, Page } from '@/payload-types'
+import jsxConverters from '@/utilities/richTextConverter'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -13,6 +14,7 @@ export function CallToActionBlock({
   invertLayout,
   buttonLinkExternal,
   useInternalLink,
+  showButton,
 }: CallToAction) {
   const img = (image as Media).sizes?.small
   const link = useInternalLink
@@ -25,13 +27,24 @@ export function CallToActionBlock({
       <div className="flex flex-col min-w-1/2">
         <div className="flex flex-col h-full sm:justify-between gap-4">
           <h2>{title}</h2>
-          {description && <RichText data={description} />}
-          <Button asChild>
-            <Link href={link}>{buttonText}</Link>
-          </Button>
+          <div className="overflow-hidden h-full relative justify-center flex flex-col rounded-[var(--radius)] sm:hidden">
+            <Image
+              className="object-cover aspect-video"
+              src={(img?.url as string) ?? '/'}
+              width={img?.width as number}
+              height={img?.height as number}
+              alt={(image as Media).alt}
+            />
+          </div>
+          {description && <RichText data={description} converters={jsxConverters} />}
+          {showButton && (
+            <Button asChild>
+              <Link href={link}>{buttonText}</Link>
+            </Button>
+          )}
         </div>
       </div>
-      <div className="overflow-hidden h-full relative justify-center flex flex-col rounded-[var(--radius)]">
+      <div className="overflow-hidden h-full relative justify-center sm:flex flex-col rounded-[var(--radius)] hidden min-w-1/2">
         <Image
           className="object-cover aspect-video"
           src={(img?.url as string) ?? '/'}

@@ -8,7 +8,6 @@ import { getServerSideURL } from './getURL'
 const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
   const serverUrl = getServerSideURL()
 
-  // TODO: Replace this with a default image
   let url = serverUrl + '/media/utux-og.webp'
 
   if (image && typeof image === 'object' && 'url' in image) {

@@ -35,9 +35,9 @@ export function RenderBlocks(props: { blocks: Page['blocks'] }) {
             const Block = blockComponents[blockType]
             if (Block) {
               return (
-                <React.Fragment key={index}>
+                <div key={index} className="mb-18">
                   <Block {...block} />
-                </React.Fragment>
+                </div>
               )
             }
           }

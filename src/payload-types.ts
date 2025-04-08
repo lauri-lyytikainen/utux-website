@@ -162,6 +162,7 @@ export interface CallToAction {
     [k: string]: unknown;
   } | null;
   buttonText: string;
+  showButton?: boolean | null;
   useInternalLink?: boolean | null;
   buttonLink?: (number | null) | Page;
   /**
@@ -205,6 +206,7 @@ export interface Page {
               [k: string]: unknown;
             } | null;
             buttonText: string;
+            showButton?: boolean | null;
             useInternalLink?: boolean | null;
             buttonLink?: (number | null) | Page;
             /**
@@ -838,6 +840,7 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               description?: T;
               buttonText?: T;
+              showButton?: T;
               useInternalLink?: T;
               buttonLink?: T;
               buttonLinkExternal?: T;

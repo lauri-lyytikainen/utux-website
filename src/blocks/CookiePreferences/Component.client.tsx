@@ -45,7 +45,7 @@ export function CookiePreferencesClient({ props }: { props: CookieTranslation })
   }
 
   return (
-    <div className="max-w-[1024px] mx-auto p-4 flex flex-col gap-4">
+    <div className="max-w-[1024px] mx-auto p-4 flex flex-col gap-8">
       <h2>{props.manageConsentModal.manageTitle}</h2>
       <div className="flex sm:justify-between flex-col sm:flex-row gap-2">
         <div className="min-w-[300px] flex-shrink-0 max-w-full sm:max-w-[60%]">

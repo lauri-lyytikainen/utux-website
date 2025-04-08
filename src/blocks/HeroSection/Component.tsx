@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Media, SimpleHero, SuperHero, Page } from '@/payload-types'
+import jsxConverters from '@/utilities/richTextConverter'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -35,14 +36,14 @@ export function SuperHeroComponent({
         priority
       />
       <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-background to-background/20"></div>
-      <div className="absolute inset-0 flex items-end justify-center">
-        <div className="max-w-[1024px] w-full h-1/2 p-4 flex flex-col justify-between">
+      <div className="absolute inset-0 flex flex-col p-4 max-w-[1024px] mx-auto">
+        <div className="w-full h-1/2 flex flex-col justify-center gap-8 grow">
           <h1>{title}</h1>
-          {description && <RichText data={description} />}
-          <Button asChild className="sm:self-start" size={'lg'}>
-            <Link href={link}>{buttonText}</Link>
-          </Button>
+          {description && <RichText data={description} converters={jsxConverters} />}
         </div>
+        <Button asChild className="sm:self-start sm:min-w-1/2" size={'lg'}>
+          <Link href={link}>{buttonText}</Link>
+        </Button>
       </div>
     </div>
   )

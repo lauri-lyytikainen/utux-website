@@ -6,6 +6,7 @@ import {
   HeadingFeature,
   ItalicFeature,
   lexicalEditor,
+  LinkFeature,
   StrikethroughFeature,
   UnderlineFeature,
 } from '@payloadcms/richtext-lexical'
@@ -48,6 +49,7 @@ export const SuperHero: Block = {
             HeadingFeature({ enabledHeadingSizes: [] }),
             FixedToolbarFeature(),
             AlignFeature(),
+            LinkFeature(),
           ]
         },
       }),

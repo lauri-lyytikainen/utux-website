@@ -5,6 +5,7 @@ import {
   HeadingFeature,
   ItalicFeature,
   lexicalEditor,
+  LinkFeature,
   StrikethroughFeature,
   UnderlineFeature,
 } from '@payloadcms/richtext-lexical'
@@ -33,6 +34,7 @@ export const CallToAction: Block = {
             StrikethroughFeature(),
             HeadingFeature({ enabledHeadingSizes: [] }),
             FixedToolbarFeature(),
+            LinkFeature(),
           ]
         },
       }),
@@ -47,17 +49,26 @@ export const CallToAction: Block = {
       localized: true,
     },
     {
+      name: 'showButton',
+      type: 'checkbox',
+      defaultValue: true,
+    },
+    {
       name: 'useInternalLink',
       type: 'checkbox',
       defaultValue: true,
+      admin: {
+        condition: (_, siblingData) => siblingData.showButton,
+      },
     },
     {
       name: 'buttonLink',
       type: 'relationship',
       relationTo: 'pages',
       label: 'Link to page',
+      required: true,
       admin: {
-        condition: (_, siblingData) => siblingData.useInternalLink,
+        condition: (_, siblingData) => siblingData.useInternalLink && siblingData.showButton,
       },
     },
     {
@@ -65,7 +76,7 @@ export const CallToAction: Block = {
       type: 'text',
       label: 'Link to an external page',
       admin: {
-        condition: (_, siblingData) => !siblingData.useInternalLink,
+        condition: (_, siblingData) => !siblingData.useInternalLink && siblingData.showButton,
         description: 'External url address must include the protocol eg. https:// or http:// ',
       },
       validate: (value: any) => {

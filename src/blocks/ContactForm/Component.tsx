@@ -16,9 +16,8 @@ import {
 } from '@/components/ui/form'
 import React, { useState } from 'react'
 import { ContactForm } from '@/payload-types'
-import { Car, Loader2, Mail, SendHorizonal } from 'lucide-react'
+import { Loader2, Mail, SendHorizonal } from 'lucide-react'
 import { sendEmail } from '@/utilities/sendEmail'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
 
 export function ContactFormComponent({
   title,
@@ -30,7 +29,7 @@ export function ContactFormComponent({
   successTitle,
 }: ContactForm) {
   const [loading, setLoading] = useState(false)
-  const [submitted, setSubmitted] = useState(true)
+  const [submitted, setSubmitted] = useState(false)
 
   const formSchema = z.object({
     email: z.string().email(emailField.ErrorInvalid).max(254, emailField.ErrorLong),
@@ -118,18 +117,12 @@ export function ContactFormComponent({
           </Button>
         </form>
       </Form>
-      <div className={`${submitted ? 'block' : 'hidden'} w-full`}>
-        <Card>
-          <CardHeader>
-            <div className="flex flex-col justify-center items-center gap-4">
-              <Mail />
-              <h3>{successTitle}</h3>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <p className="text-center">{successMessage}</p>
-          </CardContent>
-        </Card>
+      <div className={`${submitted ? 'block' : 'hidden'} w-full flex flex-col gap-8`}>
+        <div className="flex flex-col justify-center items-center gap-4">
+          <Mail />
+          <h3>{successTitle}</h3>
+        </div>
+        <p className="text-center">{successMessage}</p>
       </div>
     </div>
   )

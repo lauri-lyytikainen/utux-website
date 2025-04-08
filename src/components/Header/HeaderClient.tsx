@@ -79,7 +79,7 @@ export function HeaderClient({ headerData }: { headerData: Header }) {
                     <li key={link.linkedPage.path} className="flex items-center" role="none">
                       <SheetClose asChild>
                         <Link
-                          href={`${link.linkedPage.breadcrumbs?.at(-1)?.url}`}
+                          href={`${link.linkedPage.breadcrumbs?.at(-1)?.url ?? '/'}`}
                           className="hover:underline"
                           role="menuitem"
                           aria-current={
@@ -148,7 +148,7 @@ export function HeaderClient({ headerData }: { headerData: Header }) {
                   >
                     <DrawerClose className="w-full" asChild>
                       <Link
-                        href={`${link.linkedPage.breadcrumbs?.at(-1)?.url}`}
+                        href={`${link.linkedPage.breadcrumbs?.at(-1)?.url ?? '/'}`}
                         className="hover:underline w-full text-center"
                         tabIndex={0}
                         ref={index === 0 ? firstLinkRef : undefined}
