@@ -25,6 +25,7 @@ import { CookiePreferences } from './blocks/CookiePreferences/config'
 import { CookieTranslation } from './globals/Cookies'
 import { ContactForm } from './blocks/ContactForm/config'
 import { Accordion } from './blocks/Accordion/config'
+import { ProfileCard } from './blocks/ProfileCard/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -55,6 +56,7 @@ export default buildConfig({
     CookiePreferences,
     ContactForm,
     Accordion,
+    ProfileCard,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

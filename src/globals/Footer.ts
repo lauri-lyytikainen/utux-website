@@ -8,6 +8,22 @@ export const Footer: GlobalConfig = {
   },
   fields: [
     {
+      name: 'slogan',
+      type: 'text',
+      label: 'Slogan',
+      required: true,
+      localized: true,
+      defaultValue: 'New Slogan',
+    },
+    {
+      name: 'copyrightText',
+      type: 'text',
+      label: 'Copyright Text',
+      required: true,
+      localized: true,
+      defaultValue: '© 2025 Utux.fi',
+    },
+    {
       name: 'linkGroups',
       type: 'array',
       labels: {

@@ -9,6 +9,7 @@ import { LinkButtonComponent } from './LinkButton/Component'
 import { CookiePreferencesComponent } from './CookiePreferences/Component'
 import { ContactFormComponent } from './ContactForm/Component'
 import { AccordionComponent } from './Accordion/Component'
+import { ProfileCardComponent } from './ProfileCard/Component'
 
 const blockComponents: Record<Block['slug'], React.ComponentType<any>> = {
   callToAction: CallToActionBlock,
@@ -20,6 +21,7 @@ const blockComponents: Record<Block['slug'], React.ComponentType<any>> = {
   cookiePreferences: CookiePreferencesComponent,
   contactForm: ContactFormComponent,
   accordion: AccordionComponent,
+  profileCard: ProfileCardComponent,
 }
 
 export function RenderBlocks(props: { blocks: Page['blocks'] }) {

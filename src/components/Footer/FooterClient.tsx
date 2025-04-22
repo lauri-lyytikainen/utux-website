@@ -24,7 +24,7 @@ export function FooterClient({ footerData }: { footerData: Footer }) {
               height="30"
               className="hidden dark:block"
             />
-            <p className="text-xs font-light">Utux slogan</p>
+            <p className="text-xs font-light">{footerData.slogan}</p>
           </div>
           {footerData.linkGroups?.map((group) => (
             <div key={group.id} className="flex flex-col">
@@ -42,7 +42,7 @@ export function FooterClient({ footerData }: { footerData: Footer }) {
           ))}
         </div>
         <Separator />
-        <div className="py-4">© 2025 Utux.fi</div>
+        <div className="py-4">{footerData.copyrightText}</div>
       </div>
     </footer>
   )

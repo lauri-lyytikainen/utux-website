@@ -75,6 +75,7 @@ export interface Config {
     cookiePreferences: CookiePreferences;
     contactForm: ContactForm;
     accordion: Accordion;
+    profileCard: ProfileCard;
   };
   collections: {
     users: User;
@@ -353,6 +354,28 @@ export interface Page {
             blockName?: string | null;
             blockType: 'accordion';
           }
+        | {
+            name: string;
+            description?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            picture?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'profileCard';
+          }
       )[]
     | null;
   meta?: {
@@ -609,6 +632,32 @@ export interface Accordion {
   id?: string | null;
   blockName?: string | null;
   blockType: 'accordion';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "profileCard".
+ */
+export interface ProfileCard {
+  name: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  picture?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'profileCard';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1002,6 +1051,15 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        profileCard?:
+          | T
+          | {
+              name?: T;
+              description?: T;
+              picture?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   meta?:
     | T
@@ -1108,6 +1166,8 @@ export interface Header {
  */
 export interface Footer {
   id: number;
+  slogan: string;
+  copyrightText: string;
   linkGroups?:
     | {
         title: string;
@@ -1273,6 +1333,8 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
+  slogan?: T;
+  copyrightText?: T;
   linkGroups?:
     | T
     | {

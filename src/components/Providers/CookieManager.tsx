@@ -40,6 +40,15 @@ export function CookieManagerWrapper({
       privacyPolicyUrl={(props.popup.privacyPolicyLink as Page)?.breadcrumbs?.at(-1)?.url ?? '/'}
       displayType="banner"
       theme={mounted ? (theme as 'light' | 'dark') : 'light'}
+      cookieExpiration={365}
+      initialPreferences={{ Advertising: true, Analytics: true, Social: true }}
+      classNames={{
+        acceptButton: 'accept-button',
+        manageButton: 'manage-button',
+        declineButton: 'decline-button',
+        manageCancelButton: 'manage-cancel-button',
+        manageSaveButton: 'manage-save-button',
+      }}
     >
       <CookieService />
       {children}

@@ -133,4 +133,17 @@
   details summary::-webkit-details-marker {
     display: none;
   }
+
+  .accept-button,
+  .manage-save-button {
+    @apply !bg-primary hover:!bg-primary/90 !text-white !rounded-md !px-2 !py-1 !text-sm;
+  }
+  .manage-button {
+    @apply !border !border-primary !shadow-xs hover:!bg-accent !text-primary dark:!bg-input/30 dark:!border-input dark:hover:!bg-input/50 !rounded-md !px-2 !py-1 !text-sm;
+  }
+
+  .decline-button,
+  .manage-cancel-button {
+    @apply !bg-secondary hover:!bg-secondary/80 !text-secondary-foreground !rounded-md !px-2 !py-1 !text-sm;
+  }
 }
