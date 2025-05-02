@@ -39,7 +39,7 @@ export function RenderBlocks(props: { blocks: Page['blocks'] }) {
             const Block = blockComponents[blockType]
             if (Block) {
               return (
-                <div key={index} className="mb-18">
+                <div key={index} className="sm:mb-18 mb-8">
                   <Block {...block} />
                 </div>
               )
