@@ -49,6 +49,7 @@ export function CookieManagerWrapper({
         manageCancelButton: 'manage-cancel-button',
         manageSaveButton: 'manage-save-button',
       }}
+      disableAutomaticBlocking={true}
     >
       <CookieService />
       {children}

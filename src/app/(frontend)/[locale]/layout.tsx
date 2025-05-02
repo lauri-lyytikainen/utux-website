@@ -8,6 +8,7 @@ import { Footer } from '@/components/Footer/Footer'
 import { Inter } from 'next/font/google'
 import { Providers } from '@/components/Providers/Providers'
 import { BackToTopButton } from '@/components/BackToTopButton/BackToTopButton'
+import { GoogleTagManager } from '@next/third-parties/google'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -33,6 +34,7 @@ export default async function Layout({
 
   return (
     <html lang={locale} suppressHydrationWarning className={inter.variable}>
+      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID ?? ''} />
       <body>
         <main>
           <Providers lang={locale}>
