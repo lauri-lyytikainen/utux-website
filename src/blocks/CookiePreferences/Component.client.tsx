@@ -23,7 +23,7 @@ export function CookiePreferencesClient({ props }: { props: CookieTranslation })
 
   function accept() {
     return (
-      <div className="flex items-center sm:items-start gap-2">
+      <div className="flex items-center sm:items-start gap-2 min-w-40">
         <ShieldCheck className="text-primary" />
         <div className="flex flex-col">
           <p className="font-bold">{props.manageConsentModal.manageCookiesStatusConsented}</p>
