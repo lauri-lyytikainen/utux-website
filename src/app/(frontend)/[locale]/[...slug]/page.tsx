@@ -89,5 +89,5 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { locale, slug } = await params
   const page = await queryPageBySlug(slug, locale)
 
-  return generateMeta({ doc: page })
+  return await generateMeta({ doc: page })
 }
