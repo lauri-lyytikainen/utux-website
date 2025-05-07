@@ -27,7 +27,7 @@
 }
 
 .dark {
-  --background: hsl(180, 10%, 5%);
+  --background: #0e0e0e;
   --foreground: hsl(180, 0%, 90%);
   --card: hsl(180, 0%, 0%);
   --card-foreground: hsl(180, 0%, 90%);
