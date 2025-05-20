@@ -8,7 +8,7 @@ import { CookieTranslation, Page } from '@/payload-types'
 
 const CookieManager = dynamic(
   () => import('react-cookie-manager').then((mod) => mod.CookieManager),
-  { ssr: false, loading: () => null },
+  { ssr: true, loading: () => null },
 )
 
 // Create a wrapper component for CookieManager

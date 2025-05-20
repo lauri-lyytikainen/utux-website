@@ -7,6 +7,7 @@ import { Page } from '@/payload-types'
 import { ThemeSwitcher } from './ThemeSwitcher'
 import { Menu, XIcon } from 'lucide-react'
 import { useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import {
   Drawer,
   DrawerClose,
@@ -27,6 +28,7 @@ import {
 import { Close } from '@radix-ui/react-dialog'
 import { Button } from '../ui/button'
 export function HeaderClient({ headerData }: { headerData: Header }) {
+  const pathname = usePathname()
   const links = headerData.links?.map((link) => ({
     text: link.text,
     linkedPage: link.linkedPage as Page,
@@ -91,9 +93,7 @@ export function HeaderClient({ headerData }: { headerData: Header }) {
                           href={`${link.linkedPage.breadcrumbs?.at(-1)?.url ?? '/'}`}
                           className="hover:underline"
                           role="menuitem"
-                          aria-current={
-                            link.linkedPage.path === window.location.pathname ? 'page' : undefined
-                          }
+                          aria-current={link.linkedPage.path === pathname ? 'page' : undefined}
                         >
                           {link.text}
                         </Link>
