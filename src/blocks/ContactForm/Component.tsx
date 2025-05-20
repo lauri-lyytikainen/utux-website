@@ -73,9 +73,16 @@ export function ContactFormComponent({
             render={({ field }) => {
               return (
                 <FormItem>
-                  <FormLabel>{nameField.label}</FormLabel>
+                  <FormLabel htmlFor="name-input">{nameField.label}</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder={nameField.label} disabled={loading} />
+                    <Input
+                      {...field}
+                      id="name-input"
+                      placeholder={nameField.label}
+                      disabled={loading}
+                      aria-labelledby="name-input"
+                      aria-describedby='"name-input"'
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -88,9 +95,16 @@ export function ContactFormComponent({
             render={({ field }) => {
               return (
                 <FormItem>
-                  <FormLabel>{emailField.label}</FormLabel>
+                  <FormLabel htmlFor="email-input">{emailField.label}</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder={emailField.label} disabled={loading} />
+                    <Input
+                      {...field}
+                      id="email-input"
+                      placeholder={emailField.label}
+                      disabled={loading}
+                      aria-labelledby="email-input"
+                      aria-describedby='"email-input"'
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -103,9 +117,16 @@ export function ContactFormComponent({
             render={({ field }) => {
               return (
                 <FormItem>
-                  <FormLabel>{messageField.label}</FormLabel>
+                  <FormLabel htmlFor="message-input">{messageField.label}</FormLabel>
                   <FormControl>
-                    <Textarea {...field} placeholder={messageField.label} disabled={loading} />
+                    <Textarea
+                      {...field}
+                      id="message-input"
+                      placeholder={messageField.label}
+                      disabled={loading}
+                      aria-labelledby="message-input"
+                      aria-describedby='"message-input"'
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
