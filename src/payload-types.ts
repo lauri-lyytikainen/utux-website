@@ -308,16 +308,19 @@ export interface Page {
             title: string;
             nameField: {
               label: string;
+              placeholder: string;
               ErrorShort: string;
               ErrorLong: string;
             };
             emailField: {
               label: string;
+              placeholder: string;
               ErrorInvalid: string;
               ErrorLong: string;
             };
             messageField: {
               label: string;
+              placeholder: string;
               ErrorShort: string;
               ErrorLong: string;
             };
@@ -583,16 +586,19 @@ export interface ContactForm {
   title: string;
   nameField: {
     label: string;
+    placeholder: string;
     ErrorShort: string;
     ErrorLong: string;
   };
   emailField: {
     label: string;
+    placeholder: string;
     ErrorInvalid: string;
     ErrorLong: string;
   };
   messageField: {
     label: string;
+    placeholder: string;
     ErrorShort: string;
     ErrorLong: string;
   };
@@ -1015,6 +1021,7 @@ export interface PagesSelect<T extends boolean = true> {
                 | T
                 | {
                     label?: T;
+                    placeholder?: T;
                     ErrorShort?: T;
                     ErrorLong?: T;
                   };
@@ -1022,6 +1029,7 @@ export interface PagesSelect<T extends boolean = true> {
                 | T
                 | {
                     label?: T;
+                    placeholder?: T;
                     ErrorInvalid?: T;
                     ErrorLong?: T;
                   };
@@ -1029,6 +1037,7 @@ export interface PagesSelect<T extends boolean = true> {
                 | T
                 | {
                     label?: T;
+                    placeholder?: T;
                     ErrorShort?: T;
                     ErrorLong?: T;
                   };

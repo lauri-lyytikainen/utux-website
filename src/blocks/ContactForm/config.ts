@@ -34,6 +34,19 @@ export const ContactForm: Block = {
           },
         },
         {
+          name: 'placeholder',
+          type: 'text',
+          required: true,
+          localized: true,
+          defaultValue: ({ locale }) => {
+            if (locale === 'fi') {
+              return 'Nimi'
+            } else {
+              return 'Name'
+            }
+          },
+        },
+        {
           name: 'ErrorShort',
           type: 'text',
           required: true,
@@ -69,6 +82,19 @@ export const ContactForm: Block = {
       fields: [
         {
           name: 'label',
+          type: 'text',
+          required: true,
+          localized: true,
+          defaultValue: ({ locale }) => {
+            if (locale === 'fi') {
+              return 'Sähköposti'
+            } else {
+              return 'Email'
+            }
+          },
+        },
+        {
+          name: 'placeholder',
           type: 'text',
           required: true,
           localized: true,
@@ -124,6 +150,19 @@ export const ContactForm: Block = {
               return 'Viesti'
             } else {
               return 'message'
+            }
+          },
+        },
+        {
+          name: 'placeholder',
+          type: 'text',
+          required: true,
+          localized: true,
+          defaultValue: ({ locale }) => {
+            if (locale === 'fi') {
+              return 'Kirjoita viestisi tähän'
+            } else {
+              return 'Write your message here'
             }
           },
         },

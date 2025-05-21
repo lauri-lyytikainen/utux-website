@@ -78,7 +78,7 @@ export function ContactFormComponent({
                     <Input
                       {...field}
                       id="name-input"
-                      placeholder={nameField.label}
+                      placeholder={nameField.placeholder}
                       disabled={loading}
                       aria-labelledby="name-input"
                       aria-describedby='"name-input"'
@@ -100,7 +100,7 @@ export function ContactFormComponent({
                     <Input
                       {...field}
                       id="email-input"
-                      placeholder={emailField.label}
+                      placeholder={emailField.placeholder}
                       disabled={loading}
                       aria-labelledby="email-input"
                       aria-describedby='"email-input"'
@@ -122,7 +122,7 @@ export function ContactFormComponent({
                     <Textarea
                       {...field}
                       id="message-input"
-                      placeholder={messageField.label}
+                      placeholder={messageField.placeholder}
                       disabled={loading}
                       aria-labelledby="message-input"
                       aria-describedby='"message-input"'
