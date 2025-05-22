@@ -62,7 +62,7 @@ export async function sendEmail(data: FormData): Promise<EmailResponse> {
   try {
     await transporter.sendMail({
       from: process.env.GMAIL_USERNAME,
-      to: process.env.GMAIL_USERNAME,
+      to: [email, process.env.GMAIL_USERNAME ?? ''],
       subject: `Utux.fi - ${name} sent you a message`,
       text: `${name} sent you a message:\n\n${message}\n\n${email}`,
       replyTo: email,

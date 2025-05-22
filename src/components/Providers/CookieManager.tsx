@@ -50,6 +50,7 @@ export function CookieManagerWrapper({
         manageSaveButton: 'manage-save-button',
       }}
       disableAutomaticBlocking={true}
+      cookieKitId={process.env.NEXT_PUBLIC_COOKIE_KIT_ID ?? ''}
     >
       <CookieService />
       {children}
