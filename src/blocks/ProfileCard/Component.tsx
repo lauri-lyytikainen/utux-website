@@ -1,13 +1,26 @@
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
-import { Media, ProfileCard } from '@/payload-types'
+import { Media, ProfileCard, Page } from '@/payload-types'
 import jsxConverters from '@/utilities/richTextConverter'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import Image from 'next/image'
+import Link from 'next/link'
 
-export function ProfileCardComponent({ name, description, picture }: ProfileCard) {
+export function ProfileCardComponent({
+  name,
+  description,
+  picture,
+  buttonText,
+  buttonLink,
+  buttonLinkExternal,
+  useInternalLink,
+  showButton,
+}: ProfileCard) {
   const image = (picture as Media).sizes?.square
+  const link = useInternalLink
+    ? (((buttonLink as Page)?.breadcrumbs?.at(-1)?.url as string) ?? '/')
+    : (buttonLinkExternal ?? '/')
   return (
     <div className="max-w-[1024px] mx-auto p-4">
       <Card>
@@ -30,7 +43,11 @@ export function ProfileCardComponent({ name, description, picture }: ProfileCard
                 <Separator />
                 {description && <RichText data={description} converters={jsxConverters} />}
               </div>
-              <Button>Button</Button>
+              {showButton && (
+                <Button asChild>
+                  <Link href={link}>{buttonText}</Link>
+                </Button>
+              )}
             </div>
           </div>
         </CardContent>

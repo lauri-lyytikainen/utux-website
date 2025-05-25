@@ -42,6 +42,52 @@ export const ProfileCard: Block = {
       }),
     },
     {
+      name: 'buttonText',
+      type: 'text',
+      label: 'Button Text',
+      required: true,
+      defaultValue: 'Learn More',
+      localized: true,
+    },
+    {
+      name: 'showButton',
+      type: 'checkbox',
+      defaultValue: true,
+    },
+    {
+      name: 'useInternalLink',
+      type: 'checkbox',
+      defaultValue: true,
+      admin: {
+        condition: (_, siblingData) => siblingData.showButton,
+      },
+    },
+    {
+      name: 'buttonLink',
+      type: 'relationship',
+      relationTo: 'pages',
+      label: 'Link to page',
+      required: true,
+      admin: {
+        condition: (_, siblingData) => siblingData.useInternalLink && siblingData.showButton,
+      },
+    },
+    {
+      name: 'buttonLinkExternal',
+      type: 'text',
+      label: 'Link to an external page',
+      admin: {
+        condition: (_, siblingData) => !siblingData.useInternalLink && siblingData.showButton,
+        description: 'External url address must include the protocol eg. https:// or http:// ',
+      },
+      validate: (value: any) => {
+        if (!value.startsWith('https://')) {
+          return 'External url address must include the protocol eg. https:// or http:// '
+        }
+        return true
+      },
+    },
+    {
       name: 'picture',
       type: 'relationship',
       relationTo: 'media',

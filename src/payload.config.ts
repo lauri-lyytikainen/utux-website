@@ -26,6 +26,9 @@ import { CookieTranslation } from './globals/Cookies'
 import { ContactForm } from './blocks/ContactForm/config'
 import { Accordion } from './blocks/Accordion/config'
 import { ProfileCard } from './blocks/ProfileCard/config'
+import { ImageCarousel } from './blocks/ImageCarousel/config'
+import { File } from './collections/Files'
+import { FileButton } from './blocks/FileButton/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -44,7 +47,7 @@ export default buildConfig({
     locales: ['en', 'fi'],
     defaultLocale: 'fi',
   },
-  collections: [Users, Media, Pages],
+  collections: [Users, Media, File, Pages],
   globals: [Header, Footer, CookieTranslation],
   blocks: [
     CallToAction,
@@ -57,6 +60,8 @@ export default buildConfig({
     ContactForm,
     Accordion,
     ProfileCard,
+    ImageCarousel,
+    FileButton,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
@@ -84,6 +89,7 @@ export default buildConfig({
     s3Storage({
       collections: {
         media: true,
+        file: true,
       },
       bucket: process.env.S3_BUCKET || '',
       config: {

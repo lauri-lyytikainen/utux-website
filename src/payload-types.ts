@@ -76,10 +76,13 @@ export interface Config {
     contactForm: ContactForm;
     accordion: Accordion;
     profileCard: ProfileCard;
+    imageCarousel: ImageCarousel;
+    fileButton: FileButton;
   };
   collections: {
     users: User;
     media: Media;
+    file: File;
     pages: Page;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
@@ -90,6 +93,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    file: FileSelect<false> | FileSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -374,10 +378,79 @@ export interface Page {
               };
               [k: string]: unknown;
             } | null;
+            buttonText: string;
+            showButton?: boolean | null;
+            useInternalLink?: boolean | null;
+            buttonLink?: (number | null) | Page;
+            /**
+             * External url address must include the protocol eg. https:// or http://
+             */
+            buttonLinkExternal?: string | null;
             picture?: (number | null) | Media;
             id?: string | null;
             blockName?: string | null;
             blockType: 'profileCard';
+          }
+        | {
+            slides?:
+              | {
+                  title: string;
+                  description?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: string;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
+                  footer?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: string;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
+                  buttonText: string;
+                  showButton?: boolean | null;
+                  useInternalLink?: boolean | null;
+                  buttonLink?: (number | null) | Page;
+                  /**
+                   * External url address must include the protocol eg. https:// or http://
+                   */
+                  buttonLinkExternal?: string | null;
+                  image?: (number | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageCarousel';
+          }
+        | {
+            buttonText: string;
+            /**
+             * If checked, the button will be full width of the page, otherwise left aligned
+             */
+            fullWidth?: boolean | null;
+            file: number | File;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'fileButton';
           }
       )[]
     | null;
@@ -470,6 +543,24 @@ export interface Media {
       filename?: string | null;
     };
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "file".
+ */
+export interface File {
+  id: number;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -660,10 +751,87 @@ export interface ProfileCard {
     };
     [k: string]: unknown;
   } | null;
+  buttonText: string;
+  showButton?: boolean | null;
+  useInternalLink?: boolean | null;
+  buttonLink?: (number | null) | Page;
+  /**
+   * External url address must include the protocol eg. https:// or http://
+   */
+  buttonLinkExternal?: string | null;
   picture?: (number | null) | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'profileCard';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "imageCarousel".
+ */
+export interface ImageCarousel {
+  slides?:
+    | {
+        title: string;
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        footer?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        buttonText: string;
+        showButton?: boolean | null;
+        useInternalLink?: boolean | null;
+        buttonLink?: (number | null) | Page;
+        /**
+         * External url address must include the protocol eg. https:// or http://
+         */
+        buttonLinkExternal?: string | null;
+        image?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'imageCarousel';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "fileButton".
+ */
+export interface FileButton {
+  buttonText: string;
+  /**
+   * If checked, the button will be full width of the page, otherwise left aligned
+   */
+  fullWidth?: boolean | null;
+  file: number | File;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'fileButton';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -788,6 +956,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'file';
+        value: number | File;
       } | null)
     | ({
         relationTo: 'pages';
@@ -938,6 +1110,23 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "file_select".
+ */
+export interface FileSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pages_select".
  */
 export interface PagesSelect<T extends boolean = true> {
@@ -1065,7 +1254,41 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               name?: T;
               description?: T;
+              buttonText?: T;
+              showButton?: T;
+              useInternalLink?: T;
+              buttonLink?: T;
+              buttonLinkExternal?: T;
               picture?: T;
+              id?: T;
+              blockName?: T;
+            };
+        imageCarousel?:
+          | T
+          | {
+              slides?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    footer?: T;
+                    buttonText?: T;
+                    showButton?: T;
+                    useInternalLink?: T;
+                    buttonLink?: T;
+                    buttonLinkExternal?: T;
+                    image?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        fileButton?:
+          | T
+          | {
+              buttonText?: T;
+              fullWidth?: T;
+              file?: T;
               id?: T;
               blockName?: T;
             };

@@ -10,6 +10,8 @@ import { CookiePreferencesComponent } from './CookiePreferences/Component'
 import { ContactFormComponent } from './ContactForm/Component'
 import { AccordionComponent } from './Accordion/Component'
 import { ProfileCardComponent } from './ProfileCard/Component'
+import { ImageCarouselComponent } from './ImageCarousel/Component'
+import { FileButtonComponent } from './FileButton/Component'
 
 const blockComponents: Record<Block['slug'], React.ComponentType<any>> = {
   callToAction: CallToActionBlock,
@@ -22,6 +24,8 @@ const blockComponents: Record<Block['slug'], React.ComponentType<any>> = {
   contactForm: ContactFormComponent,
   accordion: AccordionComponent,
   profileCard: ProfileCardComponent,
+  imageCarousel: ImageCarouselComponent,
+  fileButton: FileButtonComponent,
 }
 
 export function RenderBlocks(props: { blocks: Page['blocks'] }) {

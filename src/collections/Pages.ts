@@ -17,6 +17,8 @@ import { CookiePreferences } from '@/blocks/CookiePreferences/config'
 import { ContactForm } from '@/blocks/ContactForm/config'
 import { Accordion } from '@/blocks/Accordion/config'
 import { ProfileCard } from '@/blocks/ProfileCard/config'
+import { ImageCarousel } from '@/blocks/ImageCarousel/config'
+import { FileButton } from '@/blocks/FileButton/config'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -84,6 +86,8 @@ export const Pages: CollectionConfig = {
                 ContactForm,
                 Accordion,
                 ProfileCard,
+                ImageCarousel,
+                FileButton,
               ],
             },
           ],

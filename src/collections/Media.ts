@@ -17,6 +17,7 @@ export const Media: CollectionConfig = {
     disableLocalStorage: true,
     adminThumbnail: 'thumbnail',
     focalPoint: true,
+    mimeTypes: ['image/*'],
     imageSizes: [
       {
         name: 'thumbnail',
