@@ -146,4 +146,8 @@
   .manage-cancel-button {
     @apply !bg-secondary hover:!bg-secondary/80 !text-secondary-foreground !rounded-md !px-2 !py-1 !text-sm;
   }
+
+  .cookie-manager div {
+    @apply !translate-none;
+  }
 }
