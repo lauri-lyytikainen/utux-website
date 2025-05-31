@@ -27,7 +27,7 @@ export function ImageCarouselComponent({ slides }: ImageCarousel) {
                 <div
                   className="flex w-full h-100 rounded-[var(--radius)]"
                   style={{
-                    backgroundImage: `url(${(slide.image as Media).sizes?.large?.url})`,
+                    backgroundImage: `url(${(slide.image as Media).sizes?.large?.url ?? ''})`,
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
                   }}

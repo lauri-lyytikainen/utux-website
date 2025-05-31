@@ -433,7 +433,7 @@ export interface Page {
                    * External url address must include the protocol eg. https:// or http://
                    */
                   buttonLinkExternal?: string | null;
-                  image?: (number | null) | Media;
+                  image: number | Media;
                   id?: string | null;
                 }[]
               | null;
@@ -810,7 +810,7 @@ export interface ImageCarousel {
          * External url address must include the protocol eg. https:// or http://
          */
         buttonLinkExternal?: string | null;
-        image?: (number | null) | Media;
+        image: number | Media;
         id?: string | null;
       }[]
     | null;

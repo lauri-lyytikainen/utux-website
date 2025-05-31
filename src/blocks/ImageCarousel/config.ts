@@ -115,6 +115,7 @@ export const ImageCarousel: Block = {
           type: 'upload',
           relationTo: 'media',
           label: 'Image',
+          required: true,
         },
       ],
     },
