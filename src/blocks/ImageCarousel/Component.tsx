@@ -13,7 +13,7 @@ import Link from 'next/link'
 
 export function ImageCarouselComponent({ slides }: ImageCarousel) {
   return (
-    <div className="max-w-[1024px] mx-auto  ">
+    <div className="max-w-[1024px] mx-auto p-4">
       <Carousel className="mb-16">
         <CarouselContent>
           {slides?.map((slide, index) => {
