@@ -10,11 +10,10 @@ import { ImageCarousel, Media, Page } from '@/payload-types'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import jsxConverters from '@/utilities/richTextConverter'
 import Link from 'next/link'
-import Image from 'next/image'
 
 export function ImageCarouselComponent({ slides }: ImageCarousel) {
   return (
-    <div className="max-w-[1024px] mx-auto p-4">
+    <div className="max-w-[1024px] mx-auto  ">
       <Carousel className="mb-16">
         <CarouselContent>
           {slides?.map((slide, index) => {
@@ -25,9 +24,9 @@ export function ImageCarouselComponent({ slides }: ImageCarousel) {
             return (
               <CarouselItem key={index}>
                 <div
-                  className="flex w-full h-100 rounded-[var(--radius)]"
+                  className="flex w-full h-125 rounded-[var(--radius)]"
                   style={{
-                    backgroundImage: `url(${(slide.image as Media).sizes?.large?.url ?? ''})`,
+                    backgroundImage: `url(${encodeURI((slide.image as Media)?.sizes?.large?.url ?? '')})`,
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
                   }}
