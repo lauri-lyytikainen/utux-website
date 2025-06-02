@@ -26,7 +26,7 @@ export function SuperHeroComponent({
     ? (((buttonLink as Page)?.breadcrumbs?.at(-1)?.url as string) ?? '/')
     : (buttonLinkExternal ?? '/')
   return (
-    <div className="relative h-[500px]  overflow-x-hidden">
+    <div className="relative h-[calc(100vh-7rem)] max-h-[1000px] overflow-x-hidden">
       <Image
         src={img?.url as string}
         alt={(image as Media).alt}

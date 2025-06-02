@@ -8,8 +8,8 @@ export function FooterClient({ footerData }: { footerData: Footer }) {
   return (
     <footer className="bg-background">
       <div className="max-w-[1024px] mx-auto w-full flex flex-col p-4">
-        <div className="flex w-full py-4 gap-4 sm:gap-8 justify-between">
-          <div className="flex flex-col gap-2 pt-2 justify-start min-w-16">
+        <div className="flex flex-col sm:flex-row w-full py-4 gap-4 sm:gap-8 justify-between">
+          <div className="flex flex-col grow gap-2 pt-2 justify-start min-w-16">
             <Image
               src="/media/utux-dark.svg"
               alt="Utux Logo"
