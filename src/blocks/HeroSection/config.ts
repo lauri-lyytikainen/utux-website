@@ -69,33 +69,11 @@ export const SuperHero: Block = {
       localized: true,
     },
     {
-      name: 'useInternalLink',
-      type: 'checkbox',
-      defaultValue: true,
-    },
-    {
-      name: 'buttonLink',
+      name: 'link',
       type: 'relationship',
-      relationTo: 'pages',
-      label: 'Link to page',
-      admin: {
-        condition: (_, siblingData) => siblingData.useInternalLink,
-      },
-    },
-    {
-      name: 'buttonLinkExternal',
-      type: 'text',
-      label: 'Link to an external page',
-      admin: {
-        condition: (_, siblingData) => !siblingData.useInternalLink,
-        description: 'External url address must include the protocol eg. https:// or http:// ',
-      },
-      validate: (value: any) => {
-        if (!value.startsWith('https://')) {
-          return 'External url address must include the protocol eg. https:// or http:// '
-        }
-        return true
-      },
+      relationTo: 'siteLinks',
+      label: 'Link',
+      required: true,
     },
   ],
   imageURL: 'https://iili.io/3AHYlKx.md.png',

@@ -84,6 +84,7 @@ export interface Config {
     media: Media;
     file: File;
     pages: Page;
+    siteLinks: SiteLink;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -95,6 +96,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     file: FileSelect<false> | FileSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
+    siteLinks: SiteLinksSelect<false> | SiteLinksSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -270,12 +272,7 @@ export interface Page {
             } | null;
             image: number | Media;
             buttonText: string;
-            useInternalLink?: boolean | null;
-            buttonLink?: (number | null) | Page;
-            /**
-             * External url address must include the protocol eg. https:// or http://
-             */
-            buttonLinkExternal?: string | null;
+            link: number | SiteLink;
             id?: string | null;
             blockName?: string | null;
             blockType: 'superHero';
@@ -386,7 +383,7 @@ export interface Page {
              * External url address must include the protocol eg. https:// or http://
              */
             buttonLinkExternal?: string | null;
-            picture?: (number | null) | Media;
+            picture: number | Media;
             id?: string | null;
             blockName?: string | null;
             blockType: 'profileCard';
@@ -545,6 +542,29 @@ export interface Media {
   };
 }
 /**
+ * Links to pages or external URLs.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "siteLinks".
+ */
+export interface SiteLink {
+  id: number;
+  name: string;
+  useExternalLink?: boolean | null;
+  page?: (number | null) | Page;
+  /**
+   * Optional anchor name for linking to a specific block on the page. E.g. "contact-form", this would auto scroll to the block with the id "contact-form" on the page.
+   */
+  blockAnchorName?: string | null;
+  /**
+   * External url address must include the protocol eg. https:// or http://
+   */
+  externalLink?: string | null;
+  openInNewTab?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "file".
  */
@@ -619,12 +639,7 @@ export interface SuperHero {
   } | null;
   image: number | Media;
   buttonText: string;
-  useInternalLink?: boolean | null;
-  buttonLink?: (number | null) | Page;
-  /**
-   * External url address must include the protocol eg. https:// or http://
-   */
-  buttonLinkExternal?: string | null;
+  link: number | SiteLink;
   id?: string | null;
   blockName?: string | null;
   blockType: 'superHero';
@@ -759,7 +774,7 @@ export interface ProfileCard {
    * External url address must include the protocol eg. https:// or http://
    */
   buttonLinkExternal?: string | null;
-  picture?: (number | null) | Media;
+  picture: number | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'profileCard';
@@ -964,6 +979,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'siteLinks';
+        value: number | SiteLink;
       } | null)
     | ({
         relationTo: 'payload-jobs';
@@ -1171,9 +1190,7 @@ export interface PagesSelect<T extends boolean = true> {
               description?: T;
               image?: T;
               buttonText?: T;
-              useInternalLink?: T;
-              buttonLink?: T;
-              buttonLinkExternal?: T;
+              link?: T;
               id?: T;
               blockName?: T;
             };
@@ -1312,6 +1329,20 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "siteLinks_select".
+ */
+export interface SiteLinksSelect<T extends boolean = true> {
+  name?: T;
+  useExternalLink?: T;
+  page?: T;
+  blockAnchorName?: T;
+  externalLink?: T;
+  openInNewTab?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

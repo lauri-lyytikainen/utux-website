@@ -29,6 +29,7 @@ import { ProfileCard } from './blocks/ProfileCard/config'
 import { ImageCarousel } from './blocks/ImageCarousel/config'
 import { File } from './collections/Files'
 import { FileButton } from './blocks/FileButton/config'
+import { SiteLinks } from './collections/SiteLinks'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -47,7 +48,7 @@ export default buildConfig({
     locales: ['en', 'fi'],
     defaultLocale: 'fi',
   },
-  collections: [Users, Media, File, Pages],
+  collections: [Users, Media, File, Pages, SiteLinks],
   globals: [Header, Footer, CookieTranslation],
   blocks: [
     CallToAction,
