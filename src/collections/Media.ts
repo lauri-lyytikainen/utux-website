@@ -43,7 +43,7 @@ export const Media: CollectionConfig = {
       {
         name: 'wide',
         width: 1920,
-        height: 500,
+        height: 1000,
         withoutEnlargement: false,
       },
       {
