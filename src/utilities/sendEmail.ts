@@ -69,7 +69,6 @@ export async function sendEmail(data: FormData): Promise<EmailResponse> {
     })
     return { error: null, data: 'Email sent successfully!' }
   } catch (error) {
-    console.error(error)
     return { error: 'Failed to send email', data: null }
   }
 }

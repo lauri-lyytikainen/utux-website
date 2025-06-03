@@ -16,7 +16,7 @@ export function SuperHeroComponent({ title, image, buttonText, description, link
   const img = (image as Media).sizes?.wide
 
   return (
-    <div className="relative h-[calc(100vh-7rem)] max-h-[1000px] overflow-x-hidden">
+    <div className="relative h-[calc(100dvh-7rem)] max-h-[1000px] overflow-x-hidden">
       <Image
         src={img?.url as string}
         alt={(image as Media).alt}
