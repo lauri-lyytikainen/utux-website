@@ -171,17 +171,35 @@ export interface CallToAction {
   } | null;
   buttonText: string;
   showButton?: boolean | null;
-  useInternalLink?: boolean | null;
-  buttonLink?: (number | null) | Page;
-  /**
-   * External url address must include the protocol eg. https:// or http://
-   */
-  buttonLinkExternal?: string | null;
-  image?: (number | null) | Media;
+  link?: (number | null) | SiteLink;
+  image: number | Media;
   invertLayout?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'callToAction';
+}
+/**
+ * Links to pages or external URLs.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "siteLinks".
+ */
+export interface SiteLink {
+  id: number;
+  name: string;
+  useExternalLink?: boolean | null;
+  page?: (number | null) | Page;
+  /**
+   * Optional anchor name for linking to a specific block on the page. E.g. "contact-form", this would auto scroll to the block with the id "contact-form" on the page.
+   */
+  blockAnchorName?: string | null;
+  /**
+   * External url address must include the protocol eg. https:// or http://
+   */
+  externalLink?: string | null;
+  openInNewTab?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -215,13 +233,8 @@ export interface Page {
             } | null;
             buttonText: string;
             showButton?: boolean | null;
-            useInternalLink?: boolean | null;
-            buttonLink?: (number | null) | Page;
-            /**
-             * External url address must include the protocol eg. https:// or http://
-             */
-            buttonLinkExternal?: string | null;
-            image?: (number | null) | Media;
+            link?: (number | null) | SiteLink;
+            image: number | Media;
             invertLayout?: boolean | null;
             id?: string | null;
             blockName?: string | null;
@@ -278,7 +291,7 @@ export interface Page {
             blockType: 'superHero';
           }
         | {
-            media?: (number | null) | Media;
+            media: number | Media;
             id?: string | null;
             blockName?: string | null;
             blockType: 'pageMedia';
@@ -289,12 +302,7 @@ export interface Page {
              * If checked, the button will be full width of the page, otherwise left aligned
              */
             fullWidth?: boolean | null;
-            useInternalLink?: boolean | null;
-            buttonLink?: (number | null) | Page;
-            /**
-             * External url address must include the protocol eg. https:// or http://
-             */
-            buttonLinkExternal?: string | null;
+            link: number | SiteLink;
             id?: string | null;
             blockName?: string | null;
             blockType: 'linkButton';
@@ -377,12 +385,7 @@ export interface Page {
             } | null;
             buttonText: string;
             showButton?: boolean | null;
-            useInternalLink?: boolean | null;
-            buttonLink?: (number | null) | Page;
-            /**
-             * External url address must include the protocol eg. https:// or http://
-             */
-            buttonLinkExternal?: string | null;
+            link?: (number | null) | SiteLink;
             picture: number | Media;
             id?: string | null;
             blockName?: string | null;
@@ -424,12 +427,7 @@ export interface Page {
                   } | null;
                   buttonText: string;
                   showButton?: boolean | null;
-                  useInternalLink?: boolean | null;
-                  buttonLink?: (number | null) | Page;
-                  /**
-                   * External url address must include the protocol eg. https:// or http://
-                   */
-                  buttonLinkExternal?: string | null;
+                  link?: (number | null) | SiteLink;
                   image: number | Media;
                   id?: string | null;
                 }[]
@@ -542,29 +540,6 @@ export interface Media {
   };
 }
 /**
- * Links to pages or external URLs.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "siteLinks".
- */
-export interface SiteLink {
-  id: number;
-  name: string;
-  useExternalLink?: boolean | null;
-  page?: (number | null) | Page;
-  /**
-   * Optional anchor name for linking to a specific block on the page. E.g. "contact-form", this would auto scroll to the block with the id "contact-form" on the page.
-   */
-  blockAnchorName?: string | null;
-  /**
-   * External url address must include the protocol eg. https:// or http://
-   */
-  externalLink?: string | null;
-  openInNewTab?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "file".
  */
@@ -649,7 +624,7 @@ export interface SuperHero {
  * via the `definition` "pageMedia".
  */
 export interface PageMedia {
-  media?: (number | null) | Media;
+  media: number | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'pageMedia';
@@ -664,12 +639,7 @@ export interface LinkButton {
    * If checked, the button will be full width of the page, otherwise left aligned
    */
   fullWidth?: boolean | null;
-  useInternalLink?: boolean | null;
-  buttonLink?: (number | null) | Page;
-  /**
-   * External url address must include the protocol eg. https:// or http://
-   */
-  buttonLinkExternal?: string | null;
+  link: number | SiteLink;
   id?: string | null;
   blockName?: string | null;
   blockType: 'linkButton';
@@ -768,12 +738,7 @@ export interface ProfileCard {
   } | null;
   buttonText: string;
   showButton?: boolean | null;
-  useInternalLink?: boolean | null;
-  buttonLink?: (number | null) | Page;
-  /**
-   * External url address must include the protocol eg. https:// or http://
-   */
-  buttonLinkExternal?: string | null;
+  link?: (number | null) | SiteLink;
   picture: number | Media;
   id?: string | null;
   blockName?: string | null;
@@ -819,12 +784,7 @@ export interface ImageCarousel {
         } | null;
         buttonText: string;
         showButton?: boolean | null;
-        useInternalLink?: boolean | null;
-        buttonLink?: (number | null) | Page;
-        /**
-         * External url address must include the protocol eg. https:// or http://
-         */
-        buttonLinkExternal?: string | null;
+        link?: (number | null) | SiteLink;
         image: number | Media;
         id?: string | null;
       }[]
@@ -1161,9 +1121,7 @@ export interface PagesSelect<T extends boolean = true> {
               description?: T;
               buttonText?: T;
               showButton?: T;
-              useInternalLink?: T;
-              buttonLink?: T;
-              buttonLinkExternal?: T;
+              link?: T;
               image?: T;
               invertLayout?: T;
               id?: T;
@@ -1206,9 +1164,7 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               buttonText?: T;
               fullWidth?: T;
-              useInternalLink?: T;
-              buttonLink?: T;
-              buttonLinkExternal?: T;
+              link?: T;
               id?: T;
               blockName?: T;
             };
@@ -1273,9 +1229,7 @@ export interface PagesSelect<T extends boolean = true> {
               description?: T;
               buttonText?: T;
               showButton?: T;
-              useInternalLink?: T;
-              buttonLink?: T;
-              buttonLinkExternal?: T;
+              link?: T;
               picture?: T;
               id?: T;
               blockName?: T;
@@ -1291,9 +1245,7 @@ export interface PagesSelect<T extends boolean = true> {
                     footer?: T;
                     buttonText?: T;
                     showButton?: T;
-                    useInternalLink?: T;
-                    buttonLink?: T;
-                    buttonLinkExternal?: T;
+                    link?: T;
                     image?: T;
                     id?: T;
                   };

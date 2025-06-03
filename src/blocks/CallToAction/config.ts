@@ -54,36 +54,12 @@ export const CallToAction: Block = {
       defaultValue: true,
     },
     {
-      name: 'useInternalLink',
-      type: 'checkbox',
-      defaultValue: true,
-      admin: {
-        condition: (_, siblingData) => siblingData.showButton,
-      },
-    },
-    {
-      name: 'buttonLink',
+      name: 'link',
       type: 'relationship',
-      relationTo: 'pages',
-      label: 'Link to page',
+      relationTo: 'siteLinks',
       required: true,
       admin: {
-        condition: (_, siblingData) => siblingData.useInternalLink && siblingData.showButton,
-      },
-    },
-    {
-      name: 'buttonLinkExternal',
-      type: 'text',
-      label: 'Link to an external page',
-      admin: {
-        condition: (_, siblingData) => !siblingData.useInternalLink && siblingData.showButton,
-        description: 'External url address must include the protocol eg. https:// or http:// ',
-      },
-      validate: (value: any) => {
-        if (!value.startsWith('https://')) {
-          return 'External url address must include the protocol eg. https:// or http:// '
-        }
-        return true
+        condition: (_, siblingData) => siblingData.showButton,
       },
     },
     {
@@ -91,6 +67,7 @@ export const CallToAction: Block = {
       type: 'upload',
       relationTo: 'media',
       label: 'Image',
+      required: true,
     },
     {
       name: 'invertLayout',
@@ -100,7 +77,7 @@ export const CallToAction: Block = {
     },
   ],
   labels: {
-    plural: 'Calls to Action',
+    plural: 'Call to Actions',
     singular: 'Call to Action',
   },
   imageURL: 'https://iili.io/3AHYVN1.md.png',

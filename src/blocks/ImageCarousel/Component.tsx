@@ -6,10 +6,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
-import { ImageCarousel, Media, Page } from '@/payload-types'
+import { ImageCarousel, Media, SiteLink } from '@/payload-types'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import jsxConverters from '@/utilities/richTextConverter'
-import Link from 'next/link'
+import { SiteLinkComponent } from '@/components/Link/SiteLink'
 
 export function ImageCarouselComponent({ slides }: ImageCarousel) {
   return (
@@ -17,10 +17,6 @@ export function ImageCarouselComponent({ slides }: ImageCarousel) {
       <Carousel className="mb-16">
         <CarouselContent>
           {slides?.map((slide, index) => {
-            const link = slide.useInternalLink
-              ? (((slide.buttonLink as Page)?.breadcrumbs?.at(-1)?.url as string) ?? '/')
-              : (slide.buttonLinkExternal ?? '/')
-
             return (
               <CarouselItem key={index}>
                 <div
@@ -46,7 +42,10 @@ export function ImageCarouselComponent({ slides }: ImageCarousel) {
                       )}
                       {slide.showButton && (
                         <Button asChild className="w-1/2">
-                          <Link href={link}>{slide.buttonText}</Link>
+                          <SiteLinkComponent
+                            linkObject={slide.link as SiteLink}
+                            text={slide.buttonText}
+                          />
                         </Button>
                       )}
                     </div>

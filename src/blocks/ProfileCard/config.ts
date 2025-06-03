@@ -55,36 +55,13 @@ export const ProfileCard: Block = {
       defaultValue: true,
     },
     {
-      name: 'useInternalLink',
-      type: 'checkbox',
-      defaultValue: true,
-      admin: {
-        condition: (_, siblingData) => siblingData.showButton,
-      },
-    },
-    {
-      name: 'buttonLink',
+      name: 'link',
       type: 'relationship',
-      relationTo: 'pages',
-      label: 'Link to page',
+      relationTo: 'siteLinks',
+      label: 'Link',
       required: true,
       admin: {
-        condition: (_, siblingData) => siblingData.useInternalLink && siblingData.showButton,
-      },
-    },
-    {
-      name: 'buttonLinkExternal',
-      type: 'text',
-      label: 'Link to an external page',
-      admin: {
-        condition: (_, siblingData) => !siblingData.useInternalLink && siblingData.showButton,
-        description: 'External url address must include the protocol eg. https:// or http:// ',
-      },
-      validate: (value: any) => {
-        if (!value.startsWith('https://')) {
-          return 'External url address must include the protocol eg. https:// or http:// '
-        }
-        return true
+        condition: (_, siblingData) => siblingData.showButton,
       },
     },
     {

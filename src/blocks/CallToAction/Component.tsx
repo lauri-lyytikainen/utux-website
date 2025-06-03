@@ -1,25 +1,21 @@
+import { SiteLinkComponent } from '@/components/Link/SiteLink'
 import { Button } from '@/components/ui/button'
-import { CallToAction, Media, Page } from '@/payload-types'
+import { CallToAction, Media, SiteLink } from '@/payload-types'
 import jsxConverters from '@/utilities/richTextConverter'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import Image from 'next/image'
-import Link from 'next/link'
 
 export function CallToActionBlock({
   description,
-  buttonLink,
   image,
   title,
   buttonText,
   invertLayout,
-  buttonLinkExternal,
-  useInternalLink,
+  link,
   showButton,
 }: CallToAction) {
   const img = (image as Media).sizes?.small
-  const link = useInternalLink
-    ? (((buttonLink as Page)?.breadcrumbs?.at(-1)?.url as string) ?? '/')
-    : (buttonLinkExternal ?? '/')
+
   return (
     <div
       className={`max-w-[1024px] mx-auto p-4 flex flex-col ${invertLayout ? 'sm:flex-row-reverse' : 'sm:flex-row'} gap-4`}
@@ -39,7 +35,7 @@ export function CallToActionBlock({
           {description && <RichText data={description} converters={jsxConverters} />}
           {showButton && (
             <Button asChild>
-              <Link href={link}>{buttonText}</Link>
+              <SiteLinkComponent linkObject={link as SiteLink} text={buttonText} />
             </Button>
           )}
         </div>

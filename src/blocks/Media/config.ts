@@ -8,6 +8,7 @@ export const PageMedia: Block = {
       type: 'relationship',
       relationTo: 'media',
       label: 'Media',
+      required: true,
     },
   ],
   imageURL: 'https://iili.io/3AHY1SV.md.png',

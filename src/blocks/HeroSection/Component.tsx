@@ -1,9 +1,9 @@
+import { SiteLinkComponent } from '@/components/Link/SiteLink'
 import { Button } from '@/components/ui/button'
-import { Media, SimpleHero, SuperHero, Page, SiteLink } from '@/payload-types'
+import { Media, SimpleHero, SuperHero, SiteLink } from '@/payload-types'
 import jsxConverters from '@/utilities/richTextConverter'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import Image from 'next/image'
-import Link from 'next/link'
 
 export function SimpleHeroComponent({ title }: SimpleHero) {
   return (
@@ -14,12 +14,7 @@ export function SimpleHeroComponent({ title }: SimpleHero) {
 }
 export function SuperHeroComponent({ title, image, buttonText, description, link }: SuperHero) {
   const img = (image as Media).sizes?.wide
-  const siteLink = link as SiteLink
-  console.log('siteLink', siteLink)
-  const url = (link as SiteLink).useExternalLink
-    ? ((siteLink.externalLink as string) ?? '')
-    : ((siteLink.page as Page)?.breadcrumbs?.at(-1)?.url ?? '') +
-      ((siteLink.blockAnchorName as string) ? `#${siteLink.blockAnchorName as string}` : '')
+
   return (
     <div className="relative h-[calc(100vh-7rem)] max-h-[1000px] overflow-x-hidden">
       <Image
@@ -37,7 +32,7 @@ export function SuperHeroComponent({ title, image, buttonText, description, link
           {description && <RichText data={description} converters={jsxConverters} />}
         </div>
         <Button asChild className="sm:self-start sm:min-w-1/2" size={'lg'}>
-          <Link href={url}>{buttonText}</Link>
+          <SiteLinkComponent linkObject={link as SiteLink} text={buttonText} />
         </Button>
       </div>
     </div>

@@ -1,26 +1,21 @@
+import { SiteLinkComponent } from '@/components/Link/SiteLink'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
-import { Media, ProfileCard, Page } from '@/payload-types'
+import { Media, ProfileCard, SiteLink } from '@/payload-types'
 import jsxConverters from '@/utilities/richTextConverter'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import Image from 'next/image'
-import Link from 'next/link'
 
 export function ProfileCardComponent({
   name,
   description,
   picture,
   buttonText,
-  buttonLink,
-  buttonLinkExternal,
-  useInternalLink,
   showButton,
+  link,
 }: ProfileCard) {
   const image = (picture as Media).sizes?.square
-  const link = useInternalLink
-    ? (((buttonLink as Page)?.breadcrumbs?.at(-1)?.url as string) ?? '/')
-    : (buttonLinkExternal ?? '/')
   return (
     <div className="max-w-[1024px] mx-auto p-4">
       <Card>
@@ -45,7 +40,7 @@ export function ProfileCardComponent({
               </div>
               {showButton && (
                 <Button asChild>
-                  <Link href={link}>{buttonText}</Link>
+                  <SiteLinkComponent linkObject={link as SiteLink} text={buttonText} />
                 </Button>
               )}
             </div>
