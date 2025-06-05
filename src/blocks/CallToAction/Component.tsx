@@ -29,6 +29,8 @@ export function CallToActionBlock({
               src={(img?.url as string) ?? '/'}
               width={img?.width as number}
               height={img?.height as number}
+              priority={true}
+              loading="eager"
               alt={(image as Media).alt}
             />
           </div>
@@ -46,6 +48,8 @@ export function CallToActionBlock({
           src={(img?.url as string) ?? '/'}
           width={img?.width as number}
           height={img?.height as number}
+          priority={true}
+          loading="eager"
           alt={(image as Media).alt}
         />
       </div>

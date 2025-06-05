@@ -10,6 +10,8 @@ export function MediaComponent({ media }: PageMedia) {
         alt={(media as Media).alt}
         width={img?.width as number}
         height={img?.height as number}
+        priority={true}
+        loading="eager"
         className="aspect-video object-cover rounded-[var(--radius)]"
       />
     </div>

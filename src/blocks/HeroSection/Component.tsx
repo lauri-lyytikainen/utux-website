@@ -23,7 +23,8 @@ export function SuperHeroComponent({ title, image, buttonText, description, link
         width={img?.width as number}
         height={img?.height as number}
         className="w-full h-full object-cover"
-        priority
+        priority={true}
+        loading="eager"
       />
       <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-background to-background/20"></div>
       <div className="absolute inset-0 flex flex-col p-4 max-w-[1024px] mx-auto">

@@ -49,6 +49,8 @@ export function HeaderClient({ headerData }: { headerData: Header }) {
             alt="Utux Logo"
             width="100"
             height="40"
+            priority={true}
+            loading="eager"
             className="dark:hidden"
           />
           <Image
@@ -56,6 +58,8 @@ export function HeaderClient({ headerData }: { headerData: Header }) {
             alt="Utux Logo"
             width="100"
             height="40"
+            priority={true}
+            loading="eager"
             className="hidden dark:block"
           />
         </Link>
