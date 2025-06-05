@@ -9,6 +9,8 @@ import { Inter } from 'next/font/google'
 import { Providers } from '@/components/Providers/Providers'
 import { BackToTopButton } from '@/components/BackToTopButton/BackToTopButton'
 import { GoogleTagManager } from '@next/third-parties/google'
+import { getCachedGlobal } from '@/utilities/getGlobals'
+import type { CookieTranslation } from '@/payload-types'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -32,12 +34,14 @@ export default async function Layout({
     notFound()
   }
 
+  const cookieText = (await getCachedGlobal('cookieTranslation', locale, 2)()) as CookieTranslation
+
   return (
     <html lang={locale} suppressHydrationWarning className={inter.variable}>
       <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID ?? ''} />
       <body>
         <main>
-          <Providers lang={locale}>
+          <Providers lang={locale} cookieText={cookieText}>
             <div className="min-h-screen flex flex-col w-full">
               <Header locale={locale} />
               <div className="grow w-full mt-16">{children}</div>

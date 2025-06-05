@@ -1,22 +1,22 @@
+'use client'
+
 import { CookieManagerWrapper } from './CookieManager'
 import { ThemeProvider } from 'next-themes'
-import { getCachedGlobal } from '@/utilities/getGlobals'
 import type { CookieTranslation } from '@/payload-types'
 
 // Main Providers component
-export async function Providers({
+export function Providers({
   children,
   lang,
+  cookieText,
 }: {
   children: React.ReactNode
   lang: 'fi' | 'en'
+  cookieText: CookieTranslation
 }) {
-  const cookieText = await getCachedGlobal('cookieTranslation', lang, 2)()
   return (
     <ThemeProvider attribute="class" enableSystem={false} defaultTheme="light">
-      <CookieManagerWrapper props={cookieText as CookieTranslation}>
-        {children}
-      </CookieManagerWrapper>
+      <CookieManagerWrapper props={cookieText}>{children}</CookieManagerWrapper>
     </ThemeProvider>
   )
 }
