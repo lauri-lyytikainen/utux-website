@@ -71,9 +71,9 @@ export async function sendEmail(data: FormData): Promise<EmailResponse> {
               src="https://www.utux.fi/media/utux-dark.png" 
               alt="Utux Logo" 
               title="Utux Logo"
-              width="100"
-              height="40"
-              style="height: 40px; margin-bottom: 16px;" 
+              width="128"
+              height="36"
+              style="width: 128px; height: 36px; margin-bottom: 16px;" 
             />
             <h2 style="color: hsl(var(--foreground)); font-size: 24px; font-weight: 600; margin: 0;">New Contact Request</h2>
           </div>
