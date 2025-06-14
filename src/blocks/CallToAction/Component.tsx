@@ -24,15 +24,17 @@ export function CallToActionBlock({
         <div className="flex flex-col h-full sm:justify-between gap-4">
           <h2>{title}</h2>
           <div className="overflow-hidden h-full relative justify-center flex flex-col rounded-[var(--radius)] sm:hidden">
-            <Image
-              className="object-cover aspect-video"
-              src={(img?.url as string) ?? '/'}
-              width={img?.width as number}
-              height={img?.height as number}
-              priority={true}
-              loading="eager"
-              alt={(image as Media).alt}
-            />
+            <div className="relative aspect-video">
+              <Image
+                className="object-cover"
+                src={(img?.url as string) ?? '/'}
+                priority={true}
+                loading="eager"
+                alt={(image as Media).alt}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                fill
+              />
+            </div>
           </div>
           {description && <RichText data={description} converters={jsxConverters} />}
           {showButton && (
@@ -43,15 +45,17 @@ export function CallToActionBlock({
         </div>
       </div>
       <div className="overflow-hidden h-full relative justify-center sm:flex flex-col hidden min-w-1/2 p-4">
-        <Image
-          className="object-cover aspect-video rounded-[var(--radius)]"
-          src={(img?.url as string) ?? '/'}
-          width={img?.width as number}
-          height={img?.height as number}
-          priority={true}
-          loading="eager"
-          alt={(image as Media).alt}
-        />
+        <div className="relative aspect-video">
+          <Image
+            className="object-cover rounded-[var(--radius)]"
+            src={(img?.url as string) ?? '/'}
+            priority={true}
+            loading="eager"
+            alt={(image as Media).alt}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            fill
+          />
+        </div>
       </div>
     </div>
   )

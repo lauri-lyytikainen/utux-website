@@ -20,11 +20,11 @@ export function SuperHeroComponent({ title, image, buttonText, description, link
       <Image
         src={img?.url as string}
         alt={(image as Media).alt}
-        width={img?.width as number}
-        height={img?.height as number}
         className="w-full h-full object-cover"
         priority={true}
         loading="eager"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, (max-width: 1900px) 100vw, 1920px"
+        fill
       />
       <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-background to-background/20"></div>
       <div className="absolute inset-0 flex flex-col p-4 max-w-[1024px] mx-auto">

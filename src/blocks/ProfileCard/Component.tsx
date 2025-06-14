@@ -23,13 +23,16 @@ export function ProfileCardComponent({
           <div className="flex flex-col sm:flex-row gap-8 items-center sm:items-stretch">
             <div className="w-1/2 sm:w-1/3">
               {image && (
-                <Image
-                  src={image?.url as string}
-                  width={image?.width as number}
-                  height={image?.height as number}
-                  alt={(picture as Media).alt as string}
-                  className="rounded-full"
-                />
+                <div className="relative w-full aspect-square">
+                  <Image
+                    src={image?.url as string}
+                    alt={(picture as Media).alt as string}
+                    className="rounded-full object-cover"
+                    loading="eager"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    fill
+                  />
+                </div>
               )}
             </div>
             <div className="w-full h-auto flex flex-col justify-between gap-4">
