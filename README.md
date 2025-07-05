@@ -1,3 +1,5 @@
+![Deployment Status](https://img.shields.io/github/deployments/lauri-lyytikainen/utux-website/Production)
+
 # UTUX Website
 
 A modern, multilingual website built with Next.js 15, Payload CMS, and TypeScript. This project features a headless CMS architecture with PostgreSQL supabase database, S3 storage, and a comprehensive block-based content system.
@@ -95,10 +97,10 @@ Create a `.env` file in the root directory:
 
 ```env
 # Database
-DATABASE_URI=
+DATABASE_URI=postgresql://username:password@localhost:5432/utux_db
 
 # Payload CMS
-PAYLOAD_SECRET=
+PAYLOAD_SECRET=your-secret-key-here
 NEXT_PUBLIC_SERVER_URL=http://localhost:3000
 
 # S3 Storage
@@ -109,8 +111,8 @@ S3_SECRET_ACCESS_KEY=your-secret-key
 S3_REGION=your-region
 
 # Email
-GMAIL_USERNAME= (gmail app access)
-GMAIL_PASSWORD= (gmail app access)
+GMAIL_USERNAME=your-gmail-username
+GMAIL_PASSWORD=your-gmail-app-password
 
 # Google Tag Manager
 NEXT_PUBLIC_GTM_ID=your-gtm-id
@@ -287,16 +289,20 @@ pnpm generate:types
 
 ## 📝 Environment Variables
 
-| Variable                 | Description                  | Required |
-| ------------------------ | ---------------------------- | -------- |
-| `DATABASE_URI`           | PostgreSQL connection string | Yes      |
-| `PAYLOAD_SECRET`         | Payload CMS secret key       | Yes      |
-| `NEXT_PUBLIC_SERVER_URL` | Public server URL            | Yes      |
-| `S3_BUCKET`              | S3 bucket name               | Yes      |
-| `S3_ACCESS_KEY_ID`       | S3 access key                | Yes      |
-| `S3_SECRET_ACCESS_KEY`   | S3 secret key                | Yes      |
-| `S3_REGION`              | S3 region                    | Yes      |
-| `S3_ENDPOINT`            | S3 endpoint URL              | Yes      |
+| Variable                    | Description                  | Required |
+| --------------------------- | ---------------------------- | -------- |
+| `DATABASE_URI`              | PostgreSQL connection string | Yes      |
+| `PAYLOAD_SECRET`            | Payload CMS secret key       | Yes      |
+| `NEXT_PUBLIC_SERVER_URL`    | Public server URL            | Yes      |
+| `S3_BUCKET`                 | S3 bucket name               | Yes      |
+| `S3_ACCESS_KEY_ID`          | S3 access key                | Yes      |
+| `S3_SECRET_ACCESS_KEY`      | S3 secret key                | Yes      |
+| `S3_REGION`                 | S3 region                    | Yes      |
+| `S3_ENDPOINT`               | S3 endpoint URL              | Yes      |
+| `GMAIL_USERNAME`            | Gmail username for email     | No       |
+| `GMAIL_PASSWORD`            | Gmail app password           | No       |
+| `NEXT_PUBLIC_GTM_ID`        | Google Tag Manager ID        | No       |
+| `NEXT_PUBLIC_COOKIE_KIT_ID` | Cookie Kit ID                | No       |
 
 ## 🤝 Contributing
 
